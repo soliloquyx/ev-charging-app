@@ -1,7 +1,7 @@
 {
     "expo": {
-        "name": "ev-charging",
-        "slug": "ev-charging",
+        "name": "ev-charging-app",
+        "slug": "ev-charging-app",
         "version": "1.0.0",
         "orientation": "portrait",
         "icon": "./assets/icon.png",
@@ -24,6 +24,19 @@
         },
         "web": {
             "favicon": "./assets/favicon.png"
-        }
+        },
+        "plugins": [
+            [
+                "expo-font",
+                {
+                    "fonts": [
+                        "./assets/fonts/UniNeueLight.otf",
+                        "./assets/fonts/UniNeueBook.otf",
+                        "./assets/fonts/UniNeueBold.otf",
+                        "./assets/fonts/UniNeueHeavy.otf"
+                    ]
+                }
+            ]
+        ]
     }
 }
