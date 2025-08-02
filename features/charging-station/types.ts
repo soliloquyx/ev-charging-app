@@ -4,22 +4,23 @@ type Address = {
     country: string
 }
 
-type Connection = {
-    id: number
-    type: string
+export enum ConnectionType {
+    CHADEMO = 'CHAdeMO',
+    COMBO_CCS = 'ComboCCS',
+    TYPE2 = 'Type2',
+}
+
+type ConnectionSummary = {
+    type: ConnectionType
     powerKw: number
+    available: number
+    total: number
     isOperational: boolean
 }
 
-type Charger = {
-    id: number
-    name: string
-    connections: Connection[]
-}
-
-export type ChargingStation = {
+export type ListItem = {
     id: number
     name: string
     address: Address
-    chargers: Charger[]
+    connections: ConnectionSummary[]
 }

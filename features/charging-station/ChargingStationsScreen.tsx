@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native'
-import { colors } from '../../constants/colors'
-import { ChargingStationsList } from './ChargingStationsList'
+import { colors } from '../../theme/colors'
+import { ChargingStationsList } from './components/ChargingStationsList'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 export const ChargingStationsScreen = () => {
@@ -17,5 +17,6 @@ const styles = StyleSheet.create({
         backgroundColor: colors.background,
         alignItems: 'center',
         justifyContent: 'center',
+        paddingHorizontal: 20,
     },
 })
