@@ -22,7 +22,5 @@ export const useChargingStations = () => {
         })()
     }, [])
 
-    console.log(stations)
-
     return { stations }
 }

@@ -23,6 +23,7 @@ export const ChargingStationsList = ({ data, onPress, selectedId }: Props) => {
             renderItem={renderItem}
             keyExtractor={keyExtractor}
             ItemSeparatorComponent={itemSeparator}
+            contentContainerStyle={styles.content}
         ></FlatList>
     )
 }
@@ -30,5 +31,8 @@ export const ChargingStationsList = ({ data, onPress, selectedId }: Props) => {
 const styles = StyleSheet.create({
     separator: {
         height: 10,
+    },
+    content: {
+        paddingHorizontal: 20,
     },
 })
