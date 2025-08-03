@@ -2,7 +2,12 @@ import { FlatList, ListRenderItem } from 'react-native'
 import { ChargingStationListItem } from './ChargingStationListItem'
 import * as ChargingStation from '../types'
 
-export const ChargingStationsList = () => {
+type Props = {
+    onPress: (id: number) => void
+    selectedId?: number
+}
+
+export const ChargingStationsList = ({ onPress, selectedId }: Props) => {
     const data: ChargingStation.ListItem[] = [
         {
             id: 1,
@@ -34,7 +39,7 @@ export const ChargingStationsList = () => {
     ]
 
     const renderItem: ListRenderItem<ChargingStation.ListItem> = ({ item }) => (
-        <ChargingStationListItem item={item} />
+        <ChargingStationListItem item={item} onPress={onPress} selected={selectedId === item.id} />
     )
 
     const keyExtractor = (item: ChargingStation.ListItem) => item.id.toString()
