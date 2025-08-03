@@ -95,6 +95,6 @@ const styles = StyleSheet.create({
     },
     status: {
         fontFamily: 'UniNeueHeavy',
-        fontSize: 12,
+        fontSize: 14,
     },
 })
