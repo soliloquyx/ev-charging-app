@@ -14,15 +14,17 @@ export const ChargingStationsList = () => {
             },
             connections: [
                 {
-                    type: ChargingStation.ConnectionType.CHADEMO,
+                    type: ChargingStation.ConnectorType.CHADEMO,
                     powerKw: 50,
+                    speed: 'Fast',
                     available: 1,
                     total: 1,
                     isOperational: true,
                 },
                 {
-                    type: ChargingStation.ConnectionType.COMBO_CCS,
+                    type: ChargingStation.ConnectorType.COMBO_CCS,
                     powerKw: 50,
+                    speed: 'Fast',
                     available: 1,
                     total: 1,
                     isOperational: true,

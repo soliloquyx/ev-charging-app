@@ -1,10 +1,20 @@
-const brandGreen = '#34B233'
+const brand = '#34B233'
+const primary = '#FFFFFF'
 
 export const colors = {
-    background: '#FFFFFF',
+    background: primary,
     separator: '#CCCCCC',
+    text: '#000000',
     border: {
-        active: brandGreen,
-        inactive: '#999999',
+        base: '#999999',
+        selected: brand,
+    },
+    icon: {
+        onBadge: primary,
+    },
+    status: {
+        available: brand,
+        unavailable: '#9E9E9E',
+        notOperational: '#D32F2F',
     },
 } as const
