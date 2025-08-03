@@ -1,7 +1,9 @@
 import { StatusBar } from 'expo-status-bar'
 import { ChargingStationsScreen } from './features/charging-station/ChargingStationsScreen'
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { useFonts } from 'expo-font'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 export default function App() {
     const [fontsLoaded] = useFonts({
@@ -14,9 +16,13 @@ export default function App() {
     if (!fontsLoaded) return null
 
     return (
-        <SafeAreaProvider>
-            <StatusBar style="auto" />
-            <ChargingStationsScreen />
-        </SafeAreaProvider>
+        <GestureHandlerRootView>
+            <BottomSheetModalProvider>
+                <SafeAreaProvider>
+                    <StatusBar style="auto" />
+                    <ChargingStationsScreen />
+                </SafeAreaProvider>
+            </BottomSheetModalProvider>
+        </GestureHandlerRootView>
     )
 }
