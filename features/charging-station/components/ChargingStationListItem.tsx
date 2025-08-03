@@ -1,11 +1,11 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 
-import * as ChargingStation from '../types'
+import type { ChargingStation } from '../types'
 import { colors, typography } from '../../../theme/index'
 import { ConnectorSummarySection } from './ConnectorSummarySection'
 
 type Props = {
-    item: ChargingStation.ListItem
+    item: ChargingStation
     selected: boolean
     onPress: (id: number) => void
 }
@@ -23,7 +23,7 @@ export const ChargingStationListItem = ({ item, selected, onPress }: Props) => {
 
             <View style={styles.separator} />
 
-            <ConnectorSummarySection connectors={item.connections} />
+            <ConnectorSummarySection connectors={item.connectors} />
         </Pressable>
     )
 }

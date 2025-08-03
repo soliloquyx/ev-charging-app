@@ -1,12 +1,12 @@
-import * as ChargingStation from '../types'
+import { ConnectorType } from '../types'
 
-export const connectionIcon = (c: ChargingStation.ConnectorType) => {
+export const connectionIcon = (c: ConnectorType) => {
     switch (c) {
-        case ChargingStation.ConnectorType.CHADEMO:
+        case ConnectorType.CHADEMO:
             return 'ev-plug-chademo'
-        case ChargingStation.ConnectorType.COMBO_CCS:
+        case ConnectorType.COMBO_CCS:
             return 'ev-plug-ccs2'
-        case ChargingStation.ConnectorType.TYPE2:
+        case ConnectorType.TYPE2:
             return 'ev-plug-type2'
         default:
             return 'power-plug-outline'

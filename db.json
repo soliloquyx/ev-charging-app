@@ -1,0 +1,108 @@
+{
+    "chargingStations": [
+        {
+            "id": 1,
+            "name": "Tallinna Torupilli Selver",
+            "address": {
+                "street": "Vesivärava 37",
+                "city": "Tallinn",
+                "country": "Estonia"
+            },
+            "connectors": [
+                {
+                    "type": "CHAdeMO",
+                    "powerKw": 50,
+                    "speed": "Fast",
+                    "available": 1,
+                    "isOperational": false
+                },
+                {
+                    "type": "ComboCCS",
+                    "powerKw": 50,
+                    "speed": "Fast",
+                    "available": 1,
+                    "isOperational": true
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Hilton Park",
+            "address": {
+                "street": "F.R.Kreutzwaldi tn 23",
+                "city": "Tallinn",
+                "country": "Estonia"
+            },
+            "connectors": [
+                {
+                    "type": "Type2",
+                    "powerKw": 22,
+                    "speed": "Medium",
+                    "available": 1,
+                    "isOperational": true
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Hampton by Hilton",
+            "address": {
+                "street": "Tartu mnt 49",
+                "city": "Tallinn",
+                "country": "Estonia"
+            },
+            "connectors": [
+                {
+                    "type": "Type2",
+                    "powerKw": 22,
+                    "speed": "Medium",
+                    "available": 1,
+                    "isOperational": true
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Tallinn Rävala pst 5 parkla",
+            "address": {
+                "street": "Rävala pst 5",
+                "city": "Tallinn",
+                "country": "Estonia"
+            },
+            "connectors": [
+                {
+                    "type": "CHAdeMO",
+                    "powerKw": 50,
+                    "speed": "Fast",
+                    "available": 1,
+                    "isOperational": true
+                },
+                {
+                    "type": "ComboCCS",
+                    "powerKw": 50,
+                    "speed": "Fast",
+                    "available": 1,
+                    "isOperational": true
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "name": "Tallinna Sadam Lootsi 11",
+            "address": {
+                "street": "Lootsi 11",
+                "city": "Tallinn",
+                "country": "Estonia"
+            },
+            "connectors": [
+                {
+                    "type": "Type2",
+                    "powerKw": 22,
+                    "speed": "Medium",
+                    "available": 1,
+                    "isOperational": true
+                }
+            ]
+        }
+    ]
+}

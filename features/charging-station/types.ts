@@ -19,9 +19,9 @@ export type ConnectorSummary = {
     isOperational: boolean
 }
 
-export type ListItem = {
+export type ChargingStation = {
     id: number
     name: string
     address: Address
-    connections: ConnectorSummary[]
+    connectors: ConnectorSummary[]
 }
