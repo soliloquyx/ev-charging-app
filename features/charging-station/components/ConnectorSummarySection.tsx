@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 
 import { ConnectorSummaryItem } from './ConnectorSummaryItem'
 import { ConnectorSummary } from '../types'
+import { font } from '../../../theme/typography'
 
 type Props = {
     connectors: ConnectorSummary[]
@@ -23,7 +24,8 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     title: {
-        fontFamily: 'UniNeueHeavy',
+        fontFamily: font.bold,
         fontSize: 16,
+        marginBottom: 10,
     },
 })

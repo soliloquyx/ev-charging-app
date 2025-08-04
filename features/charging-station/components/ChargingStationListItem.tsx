@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native'
 import type { ChargingStation } from '../types'
 import { colors, typography } from '../../../theme/index'
 import { ConnectorSummarySection } from './ConnectorSummarySection'
+import { font } from '../../../theme/typography'
 
 type Props = {
     item: ChargingStation
@@ -39,17 +40,18 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
     },
     separator: {
-        height: 2,
-        backgroundColor: colors.border.base,
+        height: 1,
+        backgroundColor: colors.separator,
         marginVertical: 10,
         width: '100%',
     },
     title: {
-        fontFamily: 'UniNeueHeavy',
+        fontFamily: font.bold,
         fontSize: typography.h2,
+        marginBottom: 4,
     },
     address: {
-        fontFamily: 'UniNeueBook',
+        fontFamily: font.regular,
         fontSize: 16,
     },
     selected: {

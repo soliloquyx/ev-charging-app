@@ -4,6 +4,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { ConnectorSummary } from '../types'
 import { connectionIcon } from '../utils/icon'
 import { colors } from '../../../theme'
+import { font } from '../../../theme/typography'
 
 type Props = {
     item: ConnectorSummary
@@ -20,6 +21,16 @@ const statusColor = (available: number, isOperational: boolean): { color: string
 
     return { color }
 }
+
+const statusText = (available: number, total: number, isOperational: boolean) => {
+    let text = `Available (${available}/${total})`
+
+    if (!isOperational) {
+        text = 'Out of Service'
+    }
+
+    return text
+}
 export const ConnectorSummaryItem = ({ item }: Props) => {
     return (
         <View style={styles.container}>
@@ -34,18 +45,18 @@ export const ConnectorSummaryItem = ({ item }: Props) => {
                     </View>
                     <Text style={styles.type}>{item.type}</Text>
                 </View>
-                <View>
+                {/* <View>
                     <View style={styles.powerContainer}>
                         <MaterialCommunityIcons name="lightning-bolt" size={18} color="#FFFF00" />
                         <Text style={styles.power}>
                             {item.speed} ({item.powerKw}kW)
                         </Text>
                     </View>
-                </View>
+                </View> */}
+                <Text style={[styles.status, statusColor(item.available, item.isOperational)]}>
+                    {statusText(item.available, item.total, item.isOperational)}
+                </Text>
             </View>
-            <Text style={[styles.status, statusColor(item.available, item.isOperational)]}>
-                Available ({item.available})
-            </Text>
         </View>
     )
 }
@@ -59,12 +70,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginTop: 10,
-        marginBottom: 10,
+        marginVertical: 5,
     },
     iconContainer: {
         flexDirection: 'row',
-        backgroundColor: 'black',
+        backgroundColor: colors.badge,
         padding: 5,
         alignItems: 'center',
         justifyContent: 'center',
@@ -76,12 +86,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     type: {
-        fontFamily: 'UniNeueRegular',
+        fontFamily: font.regular,
         fontSize: 14,
     },
     powerContainer: {
         flexDirection: 'row',
-        backgroundColor: 'black',
+        backgroundColor: colors.badge,
         paddingVertical: 5,
         paddingHorizontal: 10,
         alignItems: 'center',
@@ -89,12 +99,12 @@ const styles = StyleSheet.create({
         borderRadius: 8,
     },
     power: {
-        fontFamily: 'UniNeueHeavy',
+        fontFamily: font.bold,
         color: 'white',
         fontSize: 12,
     },
     status: {
-        fontFamily: 'UniNeueHeavy',
-        fontSize: 14,
+        fontFamily: font.bold,
+        fontSize: 16,
     },
 })

@@ -1,6 +1,6 @@
 import { FlatList, ListRenderItem, StyleSheet, View } from 'react-native'
 import { ChargingStationListItem } from './ChargingStationListItem'
-import type { ChargingStation, ConnectorType } from '../types'
+import type { ChargingStation } from '../types'
 
 type Props = {
     data: ChargingStation[]

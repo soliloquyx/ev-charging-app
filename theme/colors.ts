@@ -1,12 +1,13 @@
-const brand = '#34B233'
+const brand = '#00973A'
 const primary = '#FFFFFF'
+const secondary = '#2B2E36'
 
 export const colors = {
     background: primary,
-    separator: '#CCCCCC',
-    text: '#000000',
+    separator: '#E2DED9',
+    text: secondary,
     border: {
-        base: '#999999',
+        base: '#E2DED9',
         selected: brand,
     },
     icon: {
@@ -15,6 +16,13 @@ export const colors = {
     status: {
         available: brand,
         unavailable: '#9E9E9E',
-        notOperational: '#D32F2F',
+        notOperational: '#A45755',
     },
+    button: {
+        primary: brand,
+        secondary,
+        disabled: '#CCCCCC',
+        text: primary,
+    },
+    badge: secondary,
 } as const
