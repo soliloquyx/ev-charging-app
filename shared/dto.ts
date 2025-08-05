@@ -43,9 +43,44 @@ export type Connector = {
     isOperational: boolean
 }
 
+export type StationInfo = {
+    id: number
+    name: string
+    address: {
+        street: string
+        city: string
+        country: string
+    }
+    chargers: Charger[]
+}
+
 export type ConnectorSummary = {
     type: ConnectorType
     available: number
     total: number
     isOperational: boolean
+}
+
+export type NewChargingSession = {
+    stationId: number
+    chargerId: number
+    connectorId: number
+    isActive: boolean
+}
+
+export type ChargingSession = {
+    id: number
+    station: {
+        name: string
+        address: Address
+    }
+    charger: {
+        id: number
+        name: string
+    }
+    connector: {
+        id: number
+        type: ConnectorType
+    }
+    isActive: boolean
 }

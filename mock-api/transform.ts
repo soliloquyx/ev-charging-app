@@ -1,5 +1,5 @@
 import { ConnectorType } from '../shared'
-import { DB } from './types'
+import { ChargingSession, DB } from './types'
 import { Dto } from '../shared'
 
 export const transformStations = (db: DB) => {
@@ -37,4 +37,53 @@ export const transformStations = (db: DB) => {
             connectors: Array.from(connectorMap.values()),
         }
     })
+}
+
+export const transformStationInfo = (db: DB, id: number) => {
+    const station = db.stations.find((s) => s.id === id)
+    if (!station) return undefined
+
+    const chargers = db.chargers
+        .filter((ch) => ch.stationId === id)
+        .map((ch) => ({
+            ...ch,
+            connectors: db.connectors.filter((conn) => conn.chargerId === ch.id),
+        }))
+
+    const info: Dto.StationInfo = {
+        ...station,
+        chargers,
+    }
+
+    return info
+}
+
+export const transformChargingSession = (
+    db: DB,
+    session: ChargingSession
+): Dto.ChargingSession | undefined => {
+    const charger = db.chargers.find((c) => c.id === session.chargerId)
+    const connector = db.connectors.find((c) => c.id === session.connectorId)
+    const station = charger ? db.stations.find((s) => s.id === charger.stationId) : undefined
+
+    if (!charger || !connector || !station) {
+        return undefined
+    }
+
+    return {
+        id: session.id,
+        isActive: session.isActive,
+        station: {
+            name: station.name,
+            address: station.address,
+        },
+        charger: {
+            id: charger.id,
+            name: charger.name,
+        },
+        connector: {
+            id: connector.id,
+            type: connector.type,
+        },
+    }
 }

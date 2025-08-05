@@ -60,6 +60,7 @@ export type Charger = {
 
 export type Connector = {
     id: number
+    chargerId: number
     type: ConnectorType
     identifier?: string
     power: Power
@@ -69,10 +70,26 @@ export type Connector = {
     isOperational: boolean
 }
 
+export type NewChargingSession = {
+    chargerId: number
+    connectorId: number
+    isActive: boolean
+}
+
 export type ChargingSession = {
     id: number
-    stationId: number
-    connectorId: number
+    station: {
+        name: string
+        address: Address
+    }
+    charger: {
+        id: number
+        name: string
+    }
+    connector: {
+        id: number
+        type: ConnectorType
+    }
     isActive: boolean
 }
 

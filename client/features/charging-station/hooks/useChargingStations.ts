@@ -6,7 +6,7 @@ export const useChargingStations = () => {
     const [stations, setStations] = useState<ChargingStation[]>([])
 
     const fetchStations = async (): Promise<ChargingStation[]> => {
-        const res = await fetch('http://localhost:3000/chargingStations')
+        const res = await fetch('http://localhost:3000/stations-list')
 
         if (!res.ok) {
             throw new Error('Failed to fetch charging stations')

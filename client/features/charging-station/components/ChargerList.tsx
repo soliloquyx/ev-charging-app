@@ -6,6 +6,7 @@ import { ChargerSection, Connector } from '../types'
 import { colors } from '../../../theme'
 import { font } from '../../../theme/typography'
 import { ChargerListItem } from './ChargerListItem'
+import { ChargerHeader } from './ChargerHeader'
 
 type Props = {
     sections: ChargerSection[]
@@ -24,20 +25,7 @@ export const ChargerList = ({ sections, onPress, selectedId }: Props) => {
         section: { title },
     }: {
         section: SectionListData<Connector, ChargerSection>
-    }) => (
-        <>
-            <View style={styles.sectionTitleContainer}>
-                <MaterialCommunityIcons
-                    name="ev-station"
-                    style={styles.titleIcon}
-                    size={20}
-                    color={colors.icon.primary}
-                />
-                <Text style={styles.title}>{title}</Text>
-            </View>
-            <View style={styles.separator} />
-        </>
-    )
+    }) => <ChargerHeader name={title} />
 
     const renderSectionFooter = ({
         section,

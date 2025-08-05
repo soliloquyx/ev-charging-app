@@ -9,7 +9,7 @@ export const useChargingStationInfo = (id?: number) => {
         if (!id) return
 
         const fetchStationInfo = async (): Promise<ChargingStationInfo> => {
-            const res = await fetch(`http://localhost:3000/chargingStationInfo/${id}`)
+            const res = await fetch(`http://localhost:3000/station-info/${id}`)
 
             if (!res.ok) {
                 throw new Error('Failed to fetch charging stations')

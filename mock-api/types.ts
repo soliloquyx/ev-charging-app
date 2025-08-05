@@ -4,6 +4,7 @@ export type DB = {
     stations: Station[]
     chargers: Charger[]
     connectors: Connector[]
+    chargingSessions: ChargingSession[]
 }
 
 export type Address = {
@@ -45,4 +46,12 @@ export type Connector = {
     speed: ConnectorSpeed
     available: boolean
     isOperational: boolean
+}
+
+export type ChargingSession = {
+    id: number
+    stationId: number
+    chargerId: number
+    connectorId: number
+    isActive: boolean
 }

@@ -3,12 +3,14 @@ import { Text, StyleSheet, Pressable } from 'react-native'
 
 import { colors } from '../../../theme'
 import { font } from '../../../theme/typography'
+import { ChargingSession } from '../types'
 
 export type Props = {
     primaryLabel: string
     secondaryLabel?: string
     disabled?: boolean
     color: string
+    onPress?: () => Promise<ChargingSession>
 }
 
 const opacityStyle = (pressed: boolean) => ({ opacity: pressed ? 0.5 : 1 })
@@ -18,6 +20,7 @@ export const ChargingButton = ({
     secondaryLabel,
     disabled = false,
     color,
+    onPress,
 }: Props) => {
     return (
         <Pressable
@@ -27,6 +30,7 @@ export const ChargingButton = ({
                 opacityStyle(pressed),
             ]}
             disabled={disabled}
+            onPress={onPress}
         >
             <Text style={styles.primaryLabel}>{primaryLabel}</Text>
             {secondaryLabel ? <Text style={styles.secondaryLabel}>{secondaryLabel}</Text> : null}

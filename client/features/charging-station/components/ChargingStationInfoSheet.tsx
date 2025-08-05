@@ -1,20 +1,22 @@
 import React, { forwardRef, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { BottomSheetModal } from '@gorhom/bottom-sheet'
+import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
+
 import { colors, typography } from '../../../theme'
 import { ChargingButton } from './ChargingButton'
-import type { Props as ChargingButtonProps } from './ChargingButton'
-import { ChargingStationInfo, Connector } from '../types'
+import { ChargingSession, ChargingStationInfo, Connector } from '../types'
 import { ChargerList } from './ChargerList'
 import { font } from '../../../theme/typography'
+import { ChargerHeader } from './ChargerHeader'
 
 type Props = {
     station?: ChargingStationInfo
+    session: ChargingSession | null
 }
 
 export const ChargingStationInfoSheet = forwardRef<BottomSheetModal | null, Props>(
-    ({ station }, ref) => {
-        const [isCharging, setIsCharging] = useState<boolean>(false)
+    ({ station, session }, ref) => {
         const [selectedConnector, setSelectedConnector] = useState<Connector>()
 
         const selectConnector = (item: Connector) => {
@@ -32,43 +34,48 @@ export const ChargingStationInfoSheet = forwardRef<BottomSheetModal | null, Prop
               }))
             : []
 
-        const getChargingButtonProps = (
-            isCharging: boolean,
-            selected?: Connector
-        ): ChargingButtonProps => {
-            if (!selected) {
-                return {
-                    primaryLabel: 'Select connector',
-                    color: colors.button.disabled,
-                    disabled: true,
-                }
-            } else if (isCharging) {
-                return {
-                    primaryLabel: 'Finish charging',
-                    color: colors.button.secondary,
-                    disabled: false,
-                }
-            } else {
-                const { price } = selected
-                return {
-                    primaryLabel: 'Start charging',
-                    secondaryLabel: `${price.value} ${price.currency}/${price.unit}`,
-                    color: colors.button.primary,
-                    disabled: false,
-                }
-            }
-        }
-
-        return (
-            <BottomSheetModal
-                ref={ref}
-                snapPoints={['60%']}
-                enableOverDrag={false}
-                index={1}
-                style={styles.container}
-                onDismiss={onDismissSheet}
-            >
-                {station && (
+        const renderSheetContent = (session: ChargingSession | null) => {
+            if (session?.isActive) {
+                return (
+                    <BottomSheetView>
+                        <View style={{ alignItems: 'center', marginTop: 10, marginBottom: 20 }}>
+                            <Text style={styles.title}>{session.station.name}</Text>
+                            <Text style={styles.address}>
+                                {session.station.address.street}, {session.station.address.city},{' '}
+                                {session.station.address.country}
+                            </Text>
+                        </View>
+                        <ChargerHeader
+                            name={session.charger.name}
+                            connectorType={session.connector.type}
+                        />
+                        <Text style={{ fontFamily: font.bold, fontSize: typography.h1 }}>
+                            Battery charging
+                        </Text>
+                        <View
+                            style={{
+                                flex: 1,
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                padding: 50,
+                            }}
+                        >
+                            <MaterialCommunityIcons
+                                name="battery-charging-50"
+                                size={50}
+                                color={colors.icon.primary}
+                            />
+                        </View>
+                        <View style={{ paddingTop: 10, paddingBottom: 40 }}>
+                            <ChargingButton
+                                primaryLabel="Finish charging"
+                                color={colors.button.secondary}
+                            />
+                        </View>
+                    </BottomSheetView>
+                )
+            } else if (station) {
+                return (
                     <>
                         <View style={{ alignItems: 'center', marginTop: 10, marginBottom: 20 }}>
                             <Text style={styles.title}>{station.name}</Text>
@@ -83,12 +90,34 @@ export const ChargingStationInfoSheet = forwardRef<BottomSheetModal | null, Prop
                             selectedId={selectedConnector?.id}
                         />
                         <View style={{ paddingTop: 10, paddingBottom: 40 }}>
-                            <ChargingButton
-                                {...getChargingButtonProps(isCharging, selectedConnector)}
-                            />
+                            {selectedConnector ? (
+                                <ChargingButton
+                                    primaryLabel="Start charging"
+                                    secondaryLabel={`${selectedConnector.price.value} ${selectedConnector.price.currency}/${selectedConnector.price.unit}`}
+                                    color={colors.button.secondary}
+                                />
+                            ) : (
+                                <ChargingButton
+                                    primaryLabel="Select connector"
+                                    color={colors.button.secondary}
+                                />
+                            )}
                         </View>
                     </>
-                )}
+                )
+            }
+        }
+
+        return (
+            <BottomSheetModal
+                ref={ref}
+                snapPoints={['60%']}
+                enableOverDrag={false}
+                index={0}
+                style={styles.container}
+                onDismiss={onDismissSheet}
+            >
+                <BottomSheetView>{renderSheetContent(session)}</BottomSheetView>
             </BottomSheetModal>
         )
     }

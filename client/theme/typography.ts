@@ -1,6 +1,7 @@
 export const typography = {
     h1: 20,
     h2: 16,
+    display: 30,
 } as const
 
 export const font = {

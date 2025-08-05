@@ -8,16 +8,19 @@ import { useChargingStations } from './hooks/useChargingStations'
 import { colors } from '../../theme/colors'
 import { useChargingStationInfo } from './hooks/useChargingStationInfo'
 import { ChargingStationInfoSheet } from './components/ChargingStationInfoSheet'
+import { useChargingSession } from './hooks/useChargingSession'
 
 export const ChargingStationsScreen = () => {
     const [selectedId, setSelectedId] = useState<number | undefined>()
     const { stations } = useChargingStations()
     const { stationInfo } = useChargingStationInfo(selectedId)
+    const { session, startSession, fetchSession } = useChargingSession()
 
     const sheetRef = useRef<BottomSheetModal>(null)
 
     const onPressListItem = (newId: number) => {
         setSelectedId((currentId) => {
+            console.log('TEST - 1', currentId === newId)
             if (currentId === newId) {
                 sheetRef.current?.close()
                 return undefined
@@ -29,10 +32,14 @@ export const ChargingStationsScreen = () => {
     }
 
     useEffect(() => {
-        if (stationInfo) {
+        fetchSession()
+    }, [fetchSession])
+
+    useEffect(() => {
+        if (session?.isActive || stationInfo) {
             sheetRef.current?.present()
         }
-    }, [stationInfo])
+    }, [session?.isActive, stationInfo])
 
     return (
         <SafeAreaView style={styles.container}>
@@ -41,7 +48,7 @@ export const ChargingStationsScreen = () => {
                 onPress={onPressListItem}
                 selectedId={selectedId}
             />
-            <ChargingStationInfoSheet ref={sheetRef} station={stationInfo} />
+            <ChargingStationInfoSheet ref={sheetRef} station={stationInfo} session={session} />
         </SafeAreaView>
     )
 }

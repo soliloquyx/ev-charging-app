@@ -1,169 +1,302 @@
 {
-    "stations": [
-        {
-            "id": 1,
-            "name": "Tallinna Torupilli Selver",
-            "address": { "street": "Vesivärava 37", "city": "Tallinn", "country": "Estonia" }
-        },
-        {
-            "id": 2,
-            "name": "Hilton Park",
-            "address": {
-                "street": "F.R.Kreutzwaldi tn 23",
-                "city": "Tallinn",
-                "country": "Estonia"
-            }
-        },
-        {
-            "id": 3,
-            "name": "Hampton by Hilton",
-            "address": { "street": "Tartu mnt 49", "city": "Tallinn", "country": "Estonia" }
-        },
-        {
-            "id": 4,
-            "name": "Tallinn Rävala pst 5 parkla",
-            "address": { "street": "Rävala pst 5", "city": "Tallinn", "country": "Estonia" }
-        },
-        {
-            "id": 5,
-            "name": "Tallinna Sadam Lootsi 11",
-            "address": { "street": "Lootsi 11", "city": "Tallinn", "country": "Estonia" }
-        }
-    ],
-    "chargers": [
-        { "id": 1, "stationId": 1, "name": "CH10080" },
-        { "id": 2, "stationId": 2, "name": "CH10221" },
-        { "id": 3, "stationId": 3, "name": "CH10080" },
-        { "id": 4, "stationId": 4, "name": "CH10060" },
-        { "id": 5, "stationId": 5, "name": "CH10201" },
-        { "id": 6, "stationId": 5, "name": "CH10215" }
-    ],
-    "connectors": [
-        {
-            "id": 1,
-            "chargerId": 1,
-            "type": "CHAdeMO",
-            "power": { "value": 50, "unit": "kW" },
-            "price": { "value": 0.42, "currency": "EUR", "unit": "kWh" },
-            "speed": "Fast",
-            "available": true,
-            "isOperational": false
-        },
-        {
-            "id": 2,
-            "chargerId": 1,
-            "type": "ComboCCS",
-            "power": { "value": 50, "unit": "kW" },
-            "price": { "value": 0.42, "currency": "EUR", "unit": "kWh" },
-            "speed": "Fast",
-            "available": true,
-            "isOperational": true
-        },
-        {
-            "id": 3,
-            "chargerId": 2,
-            "type": "Type2",
-            "identifier": "A",
-            "power": { "value": 22, "unit": "kW" },
-            "price": { "value": 0.42, "currency": "EUR", "unit": "kWh" },
-            "speed": "Medium",
-            "available": false,
-            "isOperational": false
-        },
-        {
-            "id": 4,
-            "chargerId": 2,
-            "type": "Type2",
-            "identifier": "B",
-            "power": { "value": 22, "unit": "kW" },
-            "price": { "value": 0.42, "currency": "EUR", "unit": "kWh" },
-            "speed": "Medium",
-            "available": false,
-            "isOperational": true
-        },
-        {
-            "id": 5,
-            "chargerId": 3,
-            "type": "Type2",
-            "identifier": "A",
-            "power": { "value": 22, "unit": "kW" },
-            "price": { "value": 0.42, "currency": "EUR", "unit": "kWh" },
-            "speed": "Medium",
-            "available": true,
-            "isOperational": false
-        },
-        {
-            "id": 6,
-            "chargerId": 3,
-            "type": "Type2",
-            "identifier": "B",
-            "power": { "value": 22, "unit": "kW" },
-            "price": { "value": 0.42, "currency": "EUR", "unit": "kWh" },
-            "speed": "Medium",
-            "available": true,
-            "isOperational": true
-        },
-        {
-            "id": 7,
-            "chargerId": 4,
-            "type": "CHAdeMO",
-            "power": { "value": 50, "unit": "kW" },
-            "price": { "value": 0.42, "currency": "EUR", "unit": "kWh" },
-            "speed": "Fast",
-            "available": true,
-            "isOperational": false
-        },
-        {
-            "id": 8,
-            "chargerId": 4,
-            "type": "ComboCCS",
-            "power": { "value": 50, "unit": "kW" },
-            "price": { "value": 0.42, "currency": "EUR", "unit": "kWh" },
-            "speed": "Fast",
-            "available": true,
-            "isOperational": true
-        },
-        {
-            "id": 9,
-            "chargerId": 5,
-            "type": "ComboCCS",
-            "identifier": "A",
-            "power": { "value": 50, "unit": "kW" },
-            "price": { "value": 0.42, "currency": "EUR", "unit": "kWh" },
-            "speed": "Fast",
-            "available": true,
-            "isOperational": false
-        },
-        {
-            "id": 10,
-            "chargerId": 5,
-            "type": "ComboCCS",
-            "identifier": "B",
-            "power": { "value": 50, "unit": "kW" },
-            "price": { "value": 0.42, "currency": "EUR", "unit": "kWh" },
-            "speed": "Fast",
-            "available": true,
-            "isOperational": true
-        },
-        {
-            "id": 11,
-            "chargerId": 6,
-            "type": "CHAdeMO",
-            "power": { "value": 50, "unit": "kW" },
-            "price": { "value": 0.42, "currency": "EUR", "unit": "kWh" },
-            "speed": "Fast",
-            "available": true,
-            "isOperational": false
-        },
-        {
-            "id": 12,
-            "chargerId": 6,
-            "type": "ComboCCS",
-            "power": { "value": 50, "unit": "kW" },
-            "price": { "value": 0.42, "currency": "EUR", "unit": "kWh" },
-            "speed": "Fast",
-            "available": true,
-            "isOperational": true
-        }
-    ]
+  "stations": [
+    {
+      "id": 1,
+      "name": "Tallinna Torupilli Selver",
+      "address": {
+        "street": "Vesivärava 37",
+        "city": "Tallinn",
+        "country": "Estonia"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Hilton Park",
+      "address": {
+        "street": "F.R.Kreutzwaldi tn 23",
+        "city": "Tallinn",
+        "country": "Estonia"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Hampton by Hilton",
+      "address": {
+        "street": "Tartu mnt 49",
+        "city": "Tallinn",
+        "country": "Estonia"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Tallinn Rävala pst 5 parkla",
+      "address": {
+        "street": "Rävala pst 5",
+        "city": "Tallinn",
+        "country": "Estonia"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Tallinna Sadam Lootsi 11",
+      "address": {
+        "street": "Lootsi 11",
+        "city": "Tallinn",
+        "country": "Estonia"
+      }
+    }
+  ],
+  "chargers": [
+    {
+      "id": 1,
+      "stationId": 1,
+      "name": "CH10080"
+    },
+    {
+      "id": 2,
+      "stationId": 2,
+      "name": "CH10221"
+    },
+    {
+      "id": 3,
+      "stationId": 3,
+      "name": "CH10080"
+    },
+    {
+      "id": 4,
+      "stationId": 4,
+      "name": "CH10060"
+    },
+    {
+      "id": 5,
+      "stationId": 5,
+      "name": "CH10201"
+    },
+    {
+      "id": 6,
+      "stationId": 5,
+      "name": "CH10215"
+    }
+  ],
+  "connectors": [
+    {
+      "id": 1,
+      "chargerId": 1,
+      "type": "CHAdeMO",
+      "power": {
+        "value": 50,
+        "unit": "kW"
+      },
+      "price": {
+        "value": 0.42,
+        "currency": "EUR",
+        "unit": "kWh"
+      },
+      "speed": "Fast",
+      "available": true,
+      "isOperational": false
+    },
+    {
+      "id": 2,
+      "chargerId": 1,
+      "type": "ComboCCS",
+      "power": {
+        "value": 50,
+        "unit": "kW"
+      },
+      "price": {
+        "value": 0.42,
+        "currency": "EUR",
+        "unit": "kWh"
+      },
+      "speed": "Fast",
+      "available": true,
+      "isOperational": true
+    },
+    {
+      "id": 3,
+      "chargerId": 2,
+      "type": "Type2",
+      "identifier": "A",
+      "power": {
+        "value": 22,
+        "unit": "kW"
+      },
+      "price": {
+        "value": 0.42,
+        "currency": "EUR",
+        "unit": "kWh"
+      },
+      "speed": "Medium",
+      "available": false,
+      "isOperational": false
+    },
+    {
+      "id": 4,
+      "chargerId": 2,
+      "type": "Type2",
+      "identifier": "B",
+      "power": {
+        "value": 22,
+        "unit": "kW"
+      },
+      "price": {
+        "value": 0.42,
+        "currency": "EUR",
+        "unit": "kWh"
+      },
+      "speed": "Medium",
+      "available": false,
+      "isOperational": true
+    },
+    {
+      "id": 5,
+      "chargerId": 3,
+      "type": "Type2",
+      "identifier": "A",
+      "power": {
+        "value": 22,
+        "unit": "kW"
+      },
+      "price": {
+        "value": 0.42,
+        "currency": "EUR",
+        "unit": "kWh"
+      },
+      "speed": "Medium",
+      "available": true,
+      "isOperational": false
+    },
+    {
+      "id": 6,
+      "chargerId": 3,
+      "type": "Type2",
+      "identifier": "B",
+      "power": {
+        "value": 22,
+        "unit": "kW"
+      },
+      "price": {
+        "value": 0.42,
+        "currency": "EUR",
+        "unit": "kWh"
+      },
+      "speed": "Medium",
+      "available": true,
+      "isOperational": true
+    },
+    {
+      "id": 7,
+      "chargerId": 4,
+      "type": "CHAdeMO",
+      "power": {
+        "value": 50,
+        "unit": "kW"
+      },
+      "price": {
+        "value": 0.42,
+        "currency": "EUR",
+        "unit": "kWh"
+      },
+      "speed": "Fast",
+      "available": true,
+      "isOperational": false
+    },
+    {
+      "id": 8,
+      "chargerId": 4,
+      "type": "ComboCCS",
+      "power": {
+        "value": 50,
+        "unit": "kW"
+      },
+      "price": {
+        "value": 0.42,
+        "currency": "EUR",
+        "unit": "kWh"
+      },
+      "speed": "Fast",
+      "available": true,
+      "isOperational": true
+    },
+    {
+      "id": 9,
+      "chargerId": 5,
+      "type": "ComboCCS",
+      "identifier": "A",
+      "power": {
+        "value": 50,
+        "unit": "kW"
+      },
+      "price": {
+        "value": 0.42,
+        "currency": "EUR",
+        "unit": "kWh"
+      },
+      "speed": "Fast",
+      "available": true,
+      "isOperational": false
+    },
+    {
+      "id": 10,
+      "chargerId": 5,
+      "type": "ComboCCS",
+      "identifier": "B",
+      "power": {
+        "value": 50,
+        "unit": "kW"
+      },
+      "price": {
+        "value": 0.42,
+        "currency": "EUR",
+        "unit": "kWh"
+      },
+      "speed": "Fast",
+      "available": true,
+      "isOperational": true
+    },
+    {
+      "id": 11,
+      "chargerId": 6,
+      "type": "CHAdeMO",
+      "power": {
+        "value": 50,
+        "unit": "kW"
+      },
+      "price": {
+        "value": 0.42,
+        "currency": "EUR",
+        "unit": "kWh"
+      },
+      "speed": "Fast",
+      "available": true,
+      "isOperational": false
+    },
+    {
+      "id": 12,
+      "chargerId": 6,
+      "type": "ComboCCS",
+      "power": {
+        "value": 50,
+        "unit": "kW"
+      },
+      "price": {
+        "value": 0.42,
+        "currency": "EUR",
+        "unit": "kWh"
+      },
+      "speed": "Fast",
+      "available": true,
+      "isOperational": true
+    }
+  ],
+  "chargingSessions": [
+    {
+      "stationId": 1,
+      "chargerId": 1,
+      "connectorId": 2,
+      "isActive": true,
+      "id": 1
+    }
+  ]
 }
