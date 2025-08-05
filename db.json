@@ -11,16 +11,12 @@
             "connectors": [
                 {
                     "type": "CHAdeMO",
-                    "powerKw": 50,
-                    "speed": "Fast",
                     "available": 1,
                     "total": 1,
                     "isOperational": false
                 },
                 {
                     "type": "ComboCCS",
-                    "powerKw": 50,
-                    "speed": "Fast",
                     "available": 1,
                     "total": 1,
                     "isOperational": true
@@ -38,8 +34,6 @@
             "connectors": [
                 {
                     "type": "Type2",
-                    "powerKw": 22,
-                    "speed": "Medium",
                     "available": 0,
                     "total": 2,
                     "isOperational": true
@@ -57,10 +51,8 @@
             "connectors": [
                 {
                     "type": "Type2",
-                    "powerKw": 22,
-                    "speed": "Medium",
-                    "available": 1,
-                    "total": 1,
+                    "available": 2,
+                    "total": 2,
                     "isOperational": true
                 }
             ]
@@ -76,16 +68,12 @@
             "connectors": [
                 {
                     "type": "CHAdeMO",
-                    "powerKw": 50,
-                    "speed": "Fast",
                     "available": 1,
                     "total": 1,
                     "isOperational": true
                 },
                 {
                     "type": "ComboCCS",
-                    "powerKw": 50,
-                    "speed": "Fast",
                     "available": 1,
                     "total": 1,
                     "isOperational": true
@@ -102,11 +90,15 @@
             },
             "connectors": [
                 {
-                    "type": "Type2",
-                    "powerKw": 22,
-                    "speed": "Medium",
+                    "type": "CHAdeMO",
                     "available": 1,
                     "total": 1,
+                    "isOperational": true
+                },
+                {
+                    "type": "ComboCCS",
+                    "available": 3,
+                    "total": 3,
                     "isOperational": true
                 }
             ]
@@ -180,7 +172,7 @@
                             "type": "Type2",
                             "identifier": "A",
                             "power": {
-                                "value": 50,
+                                "value": 22,
                                 "unit": "kW"
                             },
                             "price": {
@@ -188,7 +180,7 @@
                                 "currency": "EUR",
                                 "unit": "kWh"
                             },
-                            "speed": "Fast",
+                            "speed": "Medium",
                             "available": false,
                             "isOperational": false
                         },
@@ -197,7 +189,7 @@
                             "type": "Type2",
                             "identifier": "B",
                             "power": {
-                                "value": 50,
+                                "value": 22,
                                 "unit": "kW"
                             },
                             "price": {
@@ -205,7 +197,7 @@
                                 "currency": "EUR",
                                 "unit": "kWh"
                             },
-                            "speed": "Fast",
+                            "speed": "Medium",
                             "available": false,
                             "isOperational": true
                         }
@@ -231,7 +223,7 @@
                             "type": "Type2",
                             "identifier": "A",
                             "power": {
-                                "value": 50,
+                                "value": 22,
                                 "unit": "kW"
                             },
                             "price": {
@@ -239,7 +231,7 @@
                                 "currency": "EUR",
                                 "unit": "kWh"
                             },
-                            "speed": "Fast",
+                            "speed": "Medium",
                             "available": true,
                             "isOperational": false
                         },
@@ -248,7 +240,7 @@
                             "type": "Type2",
                             "identifier": "B",
                             "power": {
-                                "value": 50,
+                                "value": 22,
                                 "unit": "kW"
                             },
                             "price": {
@@ -256,7 +248,7 @@
                                 "currency": "EUR",
                                 "unit": "kWh"
                             },
-                            "speed": "Fast",
+                            "speed": "Medium",
                             "available": true,
                             "isOperational": true
                         }

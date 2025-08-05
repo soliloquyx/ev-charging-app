@@ -29,8 +29,6 @@ export enum ConnectorType {
 
 export type ConnectorSummary = {
     type: ConnectorType
-    powerKw: number
-    speed: ConnectorSpeed
     available: number
     total: number
     isOperational: boolean

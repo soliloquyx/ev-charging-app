@@ -5,7 +5,10 @@ const secondary = '#2B2E36'
 export const colors = {
     background: primary,
     separator: '#E2DED9',
-    text: secondary,
+    text: {
+        primary: secondary,
+        secondary: primary,
+    },
     border: {
         base: '#E2DED9',
         selected: brand,
@@ -25,5 +28,8 @@ export const colors = {
         disabled: '#CCCCCC',
         text: primary,
     },
-    badge: secondary,
+    badge: {
+        primary: secondary,
+        secondary: brand,
+    },
 } as const

@@ -1,10 +1,11 @@
 import { BottomSheetSectionList } from '@gorhom/bottom-sheet'
-import { ListRenderItem, Pressable, StyleSheet, Text, View } from 'react-native'
+import { ListRenderItem, StyleSheet, Text, View } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 import { ChargerSection, Connector } from '../types'
 import { colors } from '../../../theme'
 import { font } from '../../../theme/typography'
+import { ChargerListItem } from './ChargerListItem'
 
 type Props = {
     sections: ChargerSection[]
@@ -16,15 +17,7 @@ export const ChargerList = ({ sections, onPress, selectedId }: Props) => {
     const renderItem: ListRenderItem<Connector> = ({ item }) => {
         if (!item.available) return null
 
-        return (
-            <Pressable
-                style={[styles.itemContainer, selectedId === item.id && styles.selected]}
-                onPress={() => onPress(item)}
-            >
-                <Text style={styles.item}>{item.type}</Text>
-                {item.identifier && <Text style={styles.item}>{item.identifier}</Text>}
-            </Pressable>
-        )
+        return <ChargerListItem item={item} selectedId={selectedId} onPress={onPress} />
     }
 
     return (
@@ -58,23 +51,6 @@ const styles = StyleSheet.create({
     title: {
         fontFamily: font.bold,
         fontSize: 16,
-    },
-    itemContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        borderWidth: 2,
-        borderColor: colors.border.base,
-        marginBottom: 10,
-        paddingVertical: 10,
-        paddingHorizontal: 20,
-        borderRadius: 8,
-    },
-    item: {
-        fontFamily: font.regular,
-        fontSize: 16,
-    },
-    selected: {
-        borderColor: colors.border.selected,
     },
     sectionTitleContainer: {
         flexDirection: 'row',
