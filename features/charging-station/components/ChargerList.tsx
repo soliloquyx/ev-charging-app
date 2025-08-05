@@ -1,5 +1,5 @@
 import { BottomSheetSectionList } from '@gorhom/bottom-sheet'
-import { ListRenderItem, StyleSheet, Text, View } from 'react-native'
+import { ListRenderItem, SectionListData, StyleSheet, Text, View } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 import { ChargerSection, Connector } from '../types'
@@ -20,29 +20,40 @@ export const ChargerList = ({ sections, onPress, selectedId }: Props) => {
         return <ChargerListItem item={item} selectedId={selectedId} onPress={onPress} />
     }
 
+    const renderSectionHeader = ({
+        section: { title },
+    }: {
+        section: SectionListData<Connector, ChargerSection>
+    }) => (
+        <>
+            <View style={styles.sectionTitleContainer}>
+                <MaterialCommunityIcons
+                    name="ev-station"
+                    style={styles.titleIcon}
+                    size={20}
+                    color={colors.icon.primary}
+                />
+                <Text style={styles.title}>{title}</Text>
+            </View>
+            <View style={styles.separator} />
+        </>
+    )
+
+    const renderSectionFooter = ({
+        section,
+    }: {
+        section: SectionListData<Connector, ChargerSection>
+    }) =>
+        section.data.length === 0 ? (
+            <Text style={styles.placeholder}>No available connectors</Text>
+        ) : null
+
     return (
         <BottomSheetSectionList
             sections={sections}
             renderItem={renderItem}
-            renderSectionHeader={({ section: { title } }) => (
-                <>
-                    <View style={styles.sectionTitleContainer}>
-                        <MaterialCommunityIcons
-                            name="ev-station"
-                            style={styles.titleIcon}
-                            size={20}
-                            color={colors.icon.primary}
-                        />
-                        <Text style={styles.title}>{title}</Text>
-                    </View>
-                    <View style={styles.separator} />
-                </>
-            )}
-            renderSectionFooter={({ section }) =>
-                section.data.length === 0 ? (
-                    <Text style={styles.item}>No available connectors</Text>
-                ) : null
-            }
+            renderSectionHeader={renderSectionHeader}
+            renderSectionFooter={renderSectionFooter}
         ></BottomSheetSectionList>
     )
 }
@@ -62,5 +73,8 @@ const styles = StyleSheet.create({
         height: 1,
         backgroundColor: colors.separator,
         marginVertical: 8,
+    },
+    placeholder: {
+        fontFamily: font.regular,
     },
 })
