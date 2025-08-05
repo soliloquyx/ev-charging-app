@@ -19,7 +19,7 @@ type Battery = {
     soc: number
 }
 
-type ConnectorSpeed = 'Fast' | 'Normal' | 'Slow'
+export type ConnectorSpeed = 'Fast' | 'Normal' | 'Slow'
 
 export enum ConnectorType {
     CHADEMO = 'CHAdeMO',
@@ -70,10 +70,9 @@ export type Connector = {
 }
 
 export type ChargingSession = {
+    id: number
     stationId: number
     connectorId: number
-    battery: Battery
-    power: Power
     isActive: boolean
 }
 

@@ -1,0 +1,21 @@
+{
+    "name": "mock-api",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "npx json-server db.json --port 3000"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "json-server": "^1.0.0-beta.3"
+    },
+    "devDependencies": {
+        "@types/express": "^5.0.3",
+        "@types/node": "^24.2.0",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.9.2"
+    }
+}
