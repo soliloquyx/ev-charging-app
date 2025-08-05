@@ -11,6 +11,7 @@ export const colors = {
         selected: brand,
     },
     icon: {
+        primary: secondary,
         onBadge: primary,
     },
     status: {

@@ -1,36 +1,47 @@
 import { StyleSheet } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { useCallback, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { BottomSheetModal } from '@gorhom/bottom-sheet'
 
 import { ChargingStationsList } from './components/ChargingStationsList'
 import { useChargingStations } from './hooks/useChargingStations'
-import { ChargingStationSheet } from './components/ChargingStationSheet'
 import { colors } from '../../theme/colors'
+import { useChargingStationInfo } from './hooks/useChargingStationInfo'
+import { ChargingStationInfoSheet } from './components/ChargingStationInfoSheet'
 
 export const ChargingStationsScreen = () => {
     const [selectedId, setSelectedId] = useState<number | undefined>()
     const { stations } = useChargingStations()
+    const { stationInfo } = useChargingStationInfo(selectedId)
 
     const sheetRef = useRef<BottomSheetModal>(null)
 
-    // callbacks
-    const handlePresentModalPress = useCallback(() => {
-        sheetRef.current?.present()
-    }, [])
-    const handleSheetChanges = useCallback((index: number) => {
-        console.log('handleSheetChanges', index)
-    }, [])
-
-    const onPress = (newId: number) => {
-        setSelectedId((currentId) => (currentId === newId ? undefined : newId))
-        sheetRef.current?.present()
+    const onPressListItem = (newId: number) => {
+        setSelectedId((currentId) => {
+            if (currentId === newId) {
+                sheetRef.current?.close()
+                return undefined
+            } else {
+                sheetRef.current?.present()
+                return newId
+            }
+        })
     }
+
+    useEffect(() => {
+        if (stationInfo) {
+            sheetRef.current?.present()
+        }
+    }, [stationInfo])
 
     return (
         <SafeAreaView style={styles.container}>
-            <ChargingStationsList data={stations} onPress={onPress} selectedId={selectedId} />
-            <ChargingStationSheet ref={sheetRef} />
+            <ChargingStationsList
+                data={stations}
+                onPress={onPressListItem}
+                selectedId={selectedId}
+            />
+            <ChargingStationInfoSheet ref={sheetRef} station={stationInfo} />
         </SafeAreaView>
     )
 }

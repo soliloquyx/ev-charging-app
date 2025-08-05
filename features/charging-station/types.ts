@@ -63,6 +63,7 @@ export type Charger = {
 export type Connector = {
     id: number
     type: ConnectorType
+    identifier?: string
     power: Power
     price: Price
     speed: ConnectorSpeed

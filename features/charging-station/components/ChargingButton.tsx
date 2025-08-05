@@ -4,18 +4,30 @@ import { Text, StyleSheet, Pressable } from 'react-native'
 import { colors } from '../../../theme'
 import { font } from '../../../theme/typography'
 
-type Props = {
+export type Props = {
     primaryLabel: string
     secondaryLabel?: string
-    disabled: boolean
+    disabled?: boolean
     color: string
 }
 
 const opacityStyle = (pressed: boolean) => ({ opacity: pressed ? 0.5 : 1 })
 
-export const ChargingButton = ({ primaryLabel, secondaryLabel }: Props) => {
+export const ChargingButton = ({
+    primaryLabel,
+    secondaryLabel,
+    disabled = false,
+    color,
+}: Props) => {
     return (
-        <Pressable style={({ pressed }) => [styles.button, opacityStyle(pressed)]}>
+        <Pressable
+            style={({ pressed }) => [
+                styles.button,
+                { backgroundColor: color },
+                opacityStyle(pressed),
+            ]}
+            disabled={disabled}
+        >
             <Text style={styles.primaryLabel}>{primaryLabel}</Text>
             {secondaryLabel ? <Text style={styles.secondaryLabel}>{secondaryLabel}</Text> : null}
         </Pressable>
@@ -28,9 +40,6 @@ const styles = StyleSheet.create({
         padding: 15,
         alignItems: 'center',
         borderRadius: 50,
-    },
-    thumbIcon: {
-        borderWidth: 0,
     },
     primaryLabel: {
         color: colors.button.text,

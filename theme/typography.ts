@@ -1,6 +1,6 @@
 export const typography = {
-    h1: 32,
-    h2: 20,
+    h1: 20,
+    h2: 16,
 } as const
 
 export const font = {

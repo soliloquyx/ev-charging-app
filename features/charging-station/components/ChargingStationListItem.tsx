@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontFamily: font.bold,
-        fontSize: typography.h2,
+        fontSize: typography.h1,
         marginBottom: 4,
     },
     address: {
