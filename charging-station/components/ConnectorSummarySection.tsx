@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 
 import { ConnectorSummaryItem } from './ConnectorSummaryItem'
 import { ConnectorSummary } from 'charging-station/types'
-import { font } from 'theme'
+import { font, typography } from 'theme'
 
 type Props = {
     connectors: ConnectorSummary[]
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontFamily: font.bold,
-        fontSize: 16,
+        fontSize: typography.h2,
         marginBottom: 10,
     },
 })

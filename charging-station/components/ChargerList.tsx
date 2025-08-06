@@ -2,7 +2,7 @@ import { BottomSheetSectionList } from '@gorhom/bottom-sheet'
 import { ListRenderItem, SectionListData, StyleSheet, Text } from 'react-native'
 
 import { ChargerSection, Connector } from 'charging-station/types'
-import { colors, font } from 'theme'
+import { colors, font, typography } from 'theme'
 import { ChargerListItem } from './ChargerListItem'
 import { ChargerHeader } from './ChargerHeader'
 
@@ -47,7 +47,7 @@ export const ChargerList = ({ sections, onPress, selectedId }: Props) => {
 const styles = StyleSheet.create({
     title: {
         fontFamily: font.bold,
-        fontSize: 16,
+        fontSize: typography.h2,
     },
     sectionTitleContainer: {
         flexDirection: 'row',

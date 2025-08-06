@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, StyleSheet, Pressable } from 'react-native'
 
-import { colors, font } from 'theme'
+import { colors, font, typography } from 'theme'
 
 export type Props = {
     primaryLabel: string
@@ -46,11 +46,11 @@ const styles = StyleSheet.create({
     primaryLabel: {
         color: colors.button.text,
         fontFamily: font.regular,
-        fontSize: 18,
+        fontSize: typography.body1,
     },
     secondaryLabel: {
         color: colors.button.text,
         fontFamily: font.regular,
-        fontSize: 14,
+        fontSize: typography.body3,
     },
 })

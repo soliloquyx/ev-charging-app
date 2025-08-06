@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
-import { colors, font } from 'theme'
+import { colors, font, typography } from 'theme'
 import { Connector } from 'charging-station/types'
 
 type Props = {
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     },
     item: {
         fontFamily: font.regular,
-        fontSize: 16,
+        fontSize: typography.body2,
     },
     itemIdentifier: {
         marginEnd: 4,
@@ -84,6 +84,6 @@ const styles = StyleSheet.create({
     power: {
         fontFamily: font.bold,
         color: colors.text.secondary,
-        fontSize: 12,
+        fontSize: typography.small,
     },
 })

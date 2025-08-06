@@ -2,7 +2,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { StyleSheet, Text, View } from 'react-native'
 
 import { ConnectorType } from 'charging-station/types'
-import { colors, font } from 'theme'
+import { colors, font, typography } from 'theme'
 
 type Props = {
     name: string
@@ -32,7 +32,7 @@ export const ChargerHeader = ({ name, connectorType }: Props) => {
 const styles = StyleSheet.create({
     text: {
         fontFamily: font.bold,
-        fontSize: 16,
+        fontSize: typography.h2,
     },
     nameContainer: {
         flexDirection: 'row',

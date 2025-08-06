@@ -152,6 +152,6 @@ const styles = StyleSheet.create({
     },
     address: {
         fontFamily: font.regular,
-        fontSize: 16,
+        fontSize: typography.body2,
     },
 })

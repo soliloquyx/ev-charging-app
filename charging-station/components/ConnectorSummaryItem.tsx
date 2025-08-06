@@ -3,7 +3,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 import { ConnectorSummary } from 'charging-station/types'
 import { connectionIcon } from 'charging-station/utils/icon'
-import { colors, font } from 'theme'
+import { colors, font, typography } from 'theme'
 
 type Props = {
     item: ConnectorSummary
@@ -60,10 +60,10 @@ const styles = StyleSheet.create({
     },
     type: {
         fontFamily: font.regular,
-        fontSize: 14,
+        fontSize: typography.body3,
     },
     status: {
         fontFamily: font.bold,
-        fontSize: 16,
+        fontSize: typography.h2,
     },
 })
