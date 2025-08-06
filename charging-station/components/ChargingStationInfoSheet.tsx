@@ -15,6 +15,7 @@ type Props = {
     selectedStationId?: number
     setSelectConnector: React.Dispatch<React.SetStateAction<Connector | undefined>>
     selectedConnector?: Connector
+    chargingSession: ReturnType<typeof useChargingSession>
 }
 
 export const ChargingStationInfoSheet = ({
@@ -22,19 +23,14 @@ export const ChargingStationInfoSheet = ({
     selectedStationId,
     setSelectConnector,
     selectedConnector,
+    chargingSession,
 }: Props) => {
-    const {
-        session,
-        startCharging,
-        getChargingSession,
-        finishCharging,
-        loading: sessionLoading,
-    } = useChargingSession()
     const { stationInfo, loading: infoLoading } = useChargingStationInfo(
-        session?.isActive ? session.stationId : selectedStationId
+        chargingSession.session?.isActive ? chargingSession.session?.stationId : selectedStationId
     )
 
-    const isInitialLoading = !session && !stationInfo && (sessionLoading || infoLoading)
+    const isInitialLoading =
+        !chargingSession.session && !stationInfo && (chargingSession.loading || infoLoading)
 
     const onDismissSheet = () => {
         setSelectConnector(undefined)
@@ -45,7 +41,7 @@ export const ChargingStationInfoSheet = ({
             return (
                 <ChargingSessionView
                     session={session}
-                    onPress={() => finishCharging(session.id!)}
+                    onPress={() => chargingSession.finishCharging(session.id!)}
                 />
             )
         } else if (stationInfo) {
@@ -72,10 +68,10 @@ export const ChargingStationInfoSheet = ({
             color: colors.button.disabled,
         }
 
-        if (session?.isActive) {
+        if (chargingSession && chargingSession.session && chargingSession.session.isActive) {
             btnProps.primaryLabel = 'Finish charging'
             btnProps.color = colors.button.secondary
-            btnProps.onPress = () => finishCharging(session.id!)
+            btnProps.onPress = () => chargingSession.finishCharging(chargingSession!.session!.id!)
         } else if (stationInfo) {
             btnProps.primaryLabel = 'Start charging'
 
@@ -84,7 +80,8 @@ export const ChargingStationInfoSheet = ({
 
                 btnProps.color = colors.button.primary
                 btnProps.secondaryLabel = `${selectedConnector.price.value} ${selectedConnector.price.currency}/${selectedConnector.price.unit}`
-                btnProps.onPress = () => startCharging(stationInfo.id, chargerId, id)
+                btnProps.onPress = () =>
+                    chargingSession.startCharging(stationInfo.id, chargerId, id)
             } else {
                 btnProps.disabled = true
             }
@@ -102,13 +99,13 @@ export const ChargingStationInfoSheet = ({
             ref={ref}
             snapPoints={['60%']}
             enableOverDrag={false}
-            enablePanDownToClose={!session?.isActive}
-            enableDismissOnClose={!session?.isActive}
+            enablePanDownToClose={!chargingSession.session?.isActive}
+            enableDismissOnClose={!chargingSession.session?.isActive}
             index={1}
             style={styles.container}
             onDismiss={onDismissSheet}
             footerComponent={renderFooter}
-            onChange={getChargingSession}
+            onChange={chargingSession.getChargingSession}
         >
             <BottomSheetView>
                 {isInitialLoading ? (
@@ -125,7 +122,7 @@ export const ChargingStationInfoSheet = ({
                             </Text>
                         </View>
 
-                        {renderSheetContent(session)}
+                        {renderSheetContent(chargingSession.session)}
                     </>
                 )}
             </BottomSheetView>

@@ -8,15 +8,21 @@ import { useChargingStations } from './hooks/useChargingStations'
 import { ChargingStationInfoSheet } from './components/ChargingStationInfoSheet'
 import { Connector } from './types'
 import { colors } from 'theme'
+import { useChargingSession } from '@hooks/useChargingSession'
 
 export const ChargingStationsScreen = () => {
     const [selectedId, setSelectedId] = useState<number | undefined>()
     const { stations } = useChargingStations()
+    const chargingSession = useChargingSession()
     const [selectedConnector, setSelectedConnector] = useState<Connector>()
 
     const sheetRef = useRef<BottomSheetModal>(null)
 
     const onPressListItem = (newId: number) => {
+        if (!chargingSession.loading && chargingSession.session?.isActive) {
+            return
+        }
+
         setSelectedId((currentId) => {
             if (currentId === newId) {
                 sheetRef.current?.close()
@@ -41,6 +47,7 @@ export const ChargingStationsScreen = () => {
                 selectedStationId={selectedId}
                 setSelectConnector={setSelectedConnector}
                 selectedConnector={selectedConnector}
+                chargingSession={chargingSession}
             />
         </SafeAreaView>
     )
