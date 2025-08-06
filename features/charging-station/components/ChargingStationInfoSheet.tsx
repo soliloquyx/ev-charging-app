@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { useState } from 'react'
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
 import { BottomSheetFooter, BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet'
 
 import { ChargingSession, Connector } from '../types'
@@ -19,14 +19,18 @@ type Props = {
 
 export const ChargingStationInfoSheet = ({ ref, selectedStationId }: Props) => {
     const [selectedConnector, setSelectedConnector] = useState<Connector>()
-    const { stationInfo } = useChargingStationInfo(selectedStationId)
-    const { session, startCharging, getChargingSession, finishCharging } = useChargingSession()
+    const {
+        session,
+        startCharging,
+        getChargingSession,
+        finishCharging,
+        loading: sessionLoading,
+    } = useChargingSession()
+    const { stationInfo, loading: infoLoading } = useChargingStationInfo(
+        session?.isActive ? session.stationId : selectedStationId
+    )
 
-    useEffect(() => {
-        if (session?.isActive || stationInfo) {
-            ref.current?.present()
-        }
-    }, [ref, session?.isActive, stationInfo])
+    const isInitialLoading = !session && !stationInfo && (sessionLoading || infoLoading)
 
     const selectConnector = (item: Connector) => {
         setSelectedConnector(item)
@@ -36,13 +40,18 @@ export const ChargingStationInfoSheet = ({ ref, selectedStationId }: Props) => {
         setSelectedConnector(undefined)
     }
 
-    const onChange = (index: number) => {
-        if (index === 1) getChargingSession()
+    const onChange = () => {
+        getChargingSession()
     }
 
-    const renderSheetContent = (session?: ChargingSession) => {
+    const renderSheetContent = (session: ChargingSession | null) => {
         if (session?.isActive) {
-            return <ChargingSessionView session={session} onPress={finishCharging} />
+            return (
+                <ChargingSessionView
+                    session={session}
+                    onPress={() => finishCharging(session.id!)}
+                />
+            )
         } else if (stationInfo) {
             return (
                 <ChargingStationInfoView
@@ -63,7 +72,7 @@ export const ChargingStationInfoSheet = ({ ref, selectedStationId }: Props) => {
         if (session?.isActive) {
             btnProps.primaryLabel = 'Finish charging'
             btnProps.color = colors.button.secondary
-            btnProps.onPress = () => finishCharging()
+            btnProps.onPress = () => finishCharging(session.id!)
         } else if (stationInfo) {
             btnProps.primaryLabel = 'Start charging'
 
@@ -90,6 +99,8 @@ export const ChargingStationInfoSheet = ({ ref, selectedStationId }: Props) => {
             ref={ref}
             snapPoints={['60%']}
             enableOverDrag={false}
+            enablePanDownToClose={!session?.isActive}
+            enableDismissOnClose={!session?.isActive}
             index={1}
             style={styles.container}
             onDismiss={onDismissSheet}
@@ -97,14 +108,23 @@ export const ChargingStationInfoSheet = ({ ref, selectedStationId }: Props) => {
             onChange={onChange}
         >
             <BottomSheetView>
-                <View style={styles.titleContainer}>
-                    {/* <Text style={styles.title}>{session.station.name}</Text>
-                    <Text style={styles.address}>
-                        {session.station.address.street}, {session.station.address.city},{' '}
-                        {session.station.address.country}
-                    </Text> */}
-                </View>
-                {renderSheetContent(session)}
+                {isInitialLoading ? (
+                    <View style={{ justifyContent: 'center', alignItems: 'center', height: '60%' }}>
+                        <ActivityIndicator />
+                    </View>
+                ) : (
+                    <>
+                        <View style={styles.titleContainer}>
+                            <Text style={styles.title}>{stationInfo?.name}</Text>
+                            <Text style={styles.address}>
+                                {stationInfo?.address.street}, {stationInfo?.address.city},{' '}
+                                {stationInfo?.address.country}
+                            </Text>
+                        </View>
+
+                        {renderSheetContent(session)}
+                    </>
+                )}
             </BottomSheetView>
         </BottomSheetModal>
     )

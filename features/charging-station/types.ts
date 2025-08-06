@@ -63,25 +63,14 @@ export type Connector = {
     available: boolean
 }
 
-type Station = {
-    id: number
-    name: string
-    address: Address
-}
-
-export type NewChargingSession = {
+export type ChargingSession = {
+    id?: number
     stationId: number
     chargerId: number
     connectorId: number
     isActive: boolean
-}
-
-export type ChargingSession = {
-    id?: number
-    station: Station
-    charger: Charger
-    connector: Connector
-    isActive: boolean
+    connectorType: ConnectorType
+    chargerName: string
 }
 
 export type ChargerSection = {

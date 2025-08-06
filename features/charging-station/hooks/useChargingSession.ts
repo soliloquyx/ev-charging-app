@@ -1,25 +1,38 @@
 import { useCallback, useState } from 'react'
-import type { ChargingSession } from '../types'
+import { useSQLiteContext } from 'expo-sqlite'
 
-import * as Api from '../api/chargingSession'
+import type { ChargingSession } from '../types'
+import {
+    fetchLatestChargingSession,
+    finishChargingSession,
+    saveNewChargingSession,
+} from '../../../db/chargingSession'
 
 export const useChargingSession = () => {
-    const [session, setSession] = useState<ChargingSession | undefined>()
+    const db = useSQLiteContext()
+
+    const [session, setSession] = useState<ChargingSession | null>(null)
+    const [loading, setLoading] = useState(false)
 
     const startCharging = async (stationId: number, chargerId: number, connectorId: number) => {
-        await Api.startSession(stationId, chargerId, connectorId)
-        await getChargingSession()
+        const s = await saveNewChargingSession(db, stationId, chargerId, connectorId)
+        setSession(s)
     }
 
     const getChargingSession = useCallback(async () => {
-        const s = await Api.fetchSession()
+        setLoading(true)
+        const s = await fetchLatestChargingSession(db)
         setSession(s)
-    }, [])
+        setLoading(false)
+    }, [db])
 
-    const finishCharging = useCallback(async () => {
-        await Api.finishSession()
-        await getChargingSession()
-    }, [getChargingSession])
+    const finishCharging = useCallback(
+        async (id: number) => {
+            const s = await finishChargingSession(db, id)
+            setSession(s)
+        },
+        [db]
+    )
 
-    return { session, startCharging, getChargingSession, finishCharging }
+    return { session, startCharging, getChargingSession, finishCharging, loading }
 }

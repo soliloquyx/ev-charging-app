@@ -4,7 +4,6 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 import { ChargerHeader } from './ChargerHeader'
 import { ChargingSession } from '../types'
-import { ChargingButton } from './ChargingButton'
 import { colors, typography } from '../../../theme'
 import { font } from '../../../theme/typography'
 
@@ -15,8 +14,8 @@ type Props = {
 
 export const ChargingSessionView = ({ session, onPress }: Props) => {
     return (
-        <BottomSheetView>
-            <ChargerHeader name={session.charger.name} connectorType={session.connector.type} />
+        <View>
+            <ChargerHeader name={session.chargerName} connectorType={session.connectorType} />
             <Text style={styles.charging}>Battery charging</Text>
             <View style={styles.batteryIcon}>
                 <MaterialCommunityIcons
@@ -25,7 +24,7 @@ export const ChargingSessionView = ({ session, onPress }: Props) => {
                     color={colors.icon.primary}
                 />
             </View>
-        </BottomSheetView>
+        </View>
     )
 }
 

@@ -29,4 +29,14 @@ export type ConnectorRow = {
     available: boolean
 }
 
+export type ChargingSessionRow = {
+    id: number
+    station_id: number
+    charger_id: number
+    connector_id: number
+    is_active: number
+    connector_type: ConnectorType
+    charger_name: string
+}
+
 export type ConnectorRowWithChargerName = ConnectorRow & { charger_name: string }
