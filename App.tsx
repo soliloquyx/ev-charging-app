@@ -1,5 +1,4 @@
 import { StatusBar } from 'expo-status-bar'
-import { ChargingStationsScreen } from './features/charging-station/ChargingStationsScreen'
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { useFonts } from 'expo-font'
@@ -13,6 +12,8 @@ import {
 import { SQLiteProvider } from 'expo-sqlite'
 import { Suspense } from 'react'
 import { View } from 'react-native'
+
+import { ChargingStationsScreen } from 'charging-station/ChargingStationsScreen'
 
 export default function App() {
     const [fontsLoaded] = useFonts({

@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native'
 
 import { ConnectorSummaryItem } from './ConnectorSummaryItem'
-import { ConnectorSummary } from '../types'
-import { font } from '../../../theme/typography'
+import { ConnectorSummary } from 'charging-station/types'
+import { font } from 'theme'
 
 type Props = {
     connectors: ConnectorSummary[]

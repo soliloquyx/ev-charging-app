@@ -1,8 +1,7 @@
 import React from 'react'
 import { Text, StyleSheet, Pressable } from 'react-native'
 
-import { colors } from '../../../theme'
-import { font } from '../../../theme/typography'
+import { colors, font } from 'theme'
 
 export type Props = {
     primaryLabel: string

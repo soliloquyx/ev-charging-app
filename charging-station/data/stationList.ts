@@ -1,8 +1,8 @@
 import * as SQLite from 'expo-sqlite'
 
-import { ConnectorSummary } from '../features/charging-station/types'
 import { ConnectorSummaryRow, StationRow } from './types'
 import { toStationsList } from './transform'
+import { ConnectorSummary } from 'charging-station/types'
 
 const getConnectorSummaryMap = (rawData: ConnectorSummaryRow[]) => {
     const connectorMap = new Map<number, ConnectorSummary[]>()

@@ -1,10 +1,8 @@
 import { BottomSheetSectionList } from '@gorhom/bottom-sheet'
-import { ListRenderItem, SectionListData, StyleSheet, Text, View } from 'react-native'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { ListRenderItem, SectionListData, StyleSheet, Text } from 'react-native'
 
-import { ChargerSection, Connector } from '../types'
-import { colors } from '../../../theme'
-import { font } from '../../../theme/typography'
+import { ChargerSection, Connector } from 'charging-station/types'
+import { colors, font } from 'theme'
 import { ChargerListItem } from './ChargerListItem'
 import { ChargerHeader } from './ChargerHeader'
 

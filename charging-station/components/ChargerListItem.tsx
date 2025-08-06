@@ -1,8 +1,8 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
-import { colors } from '../../../theme'
-import type { Connector } from '../types'
-import { font } from '../../../theme/typography'
+
+import { colors, font } from 'theme'
+import { Connector } from 'charging-station/types'
 
 type Props = {
     item: Connector

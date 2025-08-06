@@ -1,6 +1,14 @@
 {
     "extends": "expo/tsconfig.base",
     "compilerOptions": {
-        "strict": true
+        "strict": true,
+        "baseUrl": ".",
+        "paths": {
+            "@components/*": ["charging-station/components/*"],
+            "@screens/*": ["charging-station/screens/*"],
+            "@hooks/*": ["charging-station/hooks/*"],
+            "@data/*": ["charging-station/data/*"],
+            "@types/*": ["charging-station/types/*"]
+        }
     }
 }

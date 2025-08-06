@@ -1,10 +1,9 @@
 import { StyleSheet, Text, View } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
-import { ConnectorSummary } from '../types'
-import { connectionIcon } from '../utils/icon'
-import { colors } from '../../../theme'
-import { font } from '../../../theme/typography'
+import { ConnectorSummary } from 'charging-station/types'
+import { connectionIcon } from 'charging-station/utils/icon'
+import { colors, font } from 'theme'
 
 type Props = {
     item: ConnectorSummary

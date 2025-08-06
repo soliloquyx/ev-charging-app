@@ -1,8 +1,8 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { StyleSheet, Text, View } from 'react-native'
-import { font } from '../../../theme/typography'
-import { colors } from '../../../theme'
-import { ConnectorType } from '../types'
+
+import { ConnectorType } from 'charging-station/types'
+import { colors, font } from 'theme'
 
 type Props = {
     name: string

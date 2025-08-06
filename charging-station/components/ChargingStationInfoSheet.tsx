@@ -1,15 +1,14 @@
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
 import { BottomSheetFooter, BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet'
-
-import { ChargingSession, Connector } from '../types'
-import { ChargingSessionView } from './ChargingSessionView'
-import { ChargingStationInfoView } from './ChargingStationInfoView'
-import { useChargingSession } from '../hooks/useChargingSession'
-import { useChargingStationInfo } from '../hooks/useChargingStationInfo'
-import { ChargingButton, Props as ChargingButtonProps } from './ChargingButton'
-import { colors } from '../../../theme'
 import { BottomSheetDefaultFooterProps } from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheetFooter/types'
-import { font, typography } from '../../../theme/typography'
+
+import { ChargingSessionView } from './ChargingSessionView'
+import { ChargingButton, Props as ChargingButtonProps } from './ChargingButton'
+import { ChargerList } from './ChargerList'
+import { useChargingSession } from 'charging-station/hooks/useChargingSession'
+import { ChargingSession, Connector } from 'charging-station/types'
+import { useChargingStationInfo } from 'charging-station/hooks/useChargingStationInfo'
+import { colors, font, typography } from 'theme'
 
 type Props = {
     ref: React.RefObject<BottomSheetModal | null>
@@ -50,11 +49,18 @@ export const ChargingStationInfoSheet = ({
                 />
             )
         } else if (stationInfo) {
+            const sections = stationInfo
+                ? stationInfo.chargers.map((charger) => ({
+                      title: charger.name,
+                      data: charger.connectors.filter((c) => c.available),
+                  }))
+                : []
+
             return (
-                <ChargingStationInfoView
-                    station={stationInfo}
-                    selectConnector={setSelectConnector}
-                    selectedConnector={selectedConnector}
+                <ChargerList
+                    sections={sections}
+                    onPress={setSelectConnector}
+                    selectedId={selectedConnector?.id}
                 />
             )
         }

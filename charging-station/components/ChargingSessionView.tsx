@@ -1,11 +1,9 @@
-import { BottomSheetView } from '@gorhom/bottom-sheet'
 import { StyleSheet, Text, View } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 import { ChargerHeader } from './ChargerHeader'
 import { ChargingSession } from '../types'
-import { colors, typography } from '../../../theme'
-import { font } from '../../../theme/typography'
+import { colors, typography, font } from 'theme'
 
 type Props = {
     session: ChargingSession

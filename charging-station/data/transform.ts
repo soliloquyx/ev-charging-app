@@ -5,7 +5,7 @@ import {
     ChargingStationInfo,
     Connector,
     ConnectorSummary,
-} from '../features/charging-station/types'
+} from 'charging-station/types'
 import { ChargingSessionRow, ConnectorRowWithChargerName, StationRow } from './types'
 
 export const toStationsList = (

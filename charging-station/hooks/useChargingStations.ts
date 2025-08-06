@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
+import { useSQLiteContext } from 'expo-sqlite'
 
 import { ChargingStation } from '../types'
-import { getStationList } from '../../../db/stationList'
-import { useSQLiteContext } from 'expo-sqlite'
+import { getStationList } from '@data/stationList'
 
 export const useChargingStations = () => {
     const db = useSQLiteContext()

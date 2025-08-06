@@ -1,12 +1,12 @@
 import { useCallback, useState } from 'react'
 import { useSQLiteContext } from 'expo-sqlite'
 
-import type { ChargingSession } from '../types'
+import type { ChargingSession } from 'charging-station/types'
 import {
     fetchLatestChargingSession,
     finishChargingSession,
     saveNewChargingSession,
-} from '../../../db/chargingSession'
+} from '@data/chargingSession'
 
 export const useChargingSession = () => {
     const db = useSQLiteContext()

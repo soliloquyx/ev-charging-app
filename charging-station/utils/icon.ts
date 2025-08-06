@@ -1,4 +1,4 @@
-import { ConnectorType } from '../types'
+import { ConnectorType } from 'charging-station/types'
 
 export const connectionIcon = (c: ConnectorType) => {
     switch (c) {

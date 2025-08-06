@@ -5,9 +5,9 @@ import type { BottomSheetModal } from '@gorhom/bottom-sheet'
 
 import { ChargingStationsList } from './components/ChargingStationsList'
 import { useChargingStations } from './hooks/useChargingStations'
-import { colors } from '../../theme/colors'
 import { ChargingStationInfoSheet } from './components/ChargingStationInfoSheet'
 import { Connector } from './types'
+import { colors } from 'theme'
 
 export const ChargingStationsScreen = () => {
     const [selectedId, setSelectedId] = useState<number | undefined>()

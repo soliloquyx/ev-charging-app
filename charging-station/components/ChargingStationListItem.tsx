@@ -1,9 +1,8 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 
-import type { ChargingStation } from '../types'
-import { colors, typography } from '../../../theme/index'
 import { ConnectorSummarySection } from './ConnectorSummarySection'
-import { font } from '../../../theme/typography'
+import type { ChargingStation } from 'charging-station/types'
+import { colors, typography, font } from 'theme'
 
 type Props = {
     item: ChargingStation

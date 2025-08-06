@@ -1,4 +1,4 @@
-import { ConnectorSpeed, ConnectorType } from '../features/charging-station/types'
+import { ConnectorSpeed, ConnectorType } from 'charging-station/types'
 
 export type ConnectorSummaryRow = {
     station_id: number
