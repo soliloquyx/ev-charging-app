@@ -34,9 +34,9 @@ export const useChargingSession = ({ updateStationsList }: UseChargingSessionOpt
     }, [db])
 
     const finishCharging = useCallback(
-        async (id: number) => {
-            const s = await finishChargingSession(db, id)
-            await updateConnectorAvailability(db, id, true)
+        async (sessionId: number, connectorId: number) => {
+            const s = await finishChargingSession(db, sessionId)
+            await updateConnectorAvailability(db, connectorId, true)
             setSession(s)
             await updateStationsList()
         },

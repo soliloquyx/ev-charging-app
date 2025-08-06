@@ -41,7 +41,7 @@ export const ChargingStationInfoSheet = ({
             return (
                 <ChargingSessionView
                     session={session}
-                    onPress={() => chargingSession.finishCharging(session.id!)}
+                    onPress={() => chargingSession.finishCharging(session.id!, session.connectorId)}
                 />
             )
         } else if (stationInfo) {
@@ -71,7 +71,11 @@ export const ChargingStationInfoSheet = ({
         if (chargingSession && chargingSession.session && chargingSession.session.isActive) {
             btnProps.primaryLabel = 'Finish charging'
             btnProps.color = colors.button.secondary
-            btnProps.onPress = () => chargingSession.finishCharging(chargingSession!.session!.id!)
+            btnProps.onPress = () =>
+                chargingSession.finishCharging(
+                    chargingSession.session!.id!,
+                    chargingSession.session!.connectorId
+                )
         } else if (stationInfo) {
             btnProps.primaryLabel = 'Start charging'
 
@@ -88,7 +92,7 @@ export const ChargingStationInfoSheet = ({
         }
 
         return (
-            <BottomSheetFooter {...footerProps} bottomInset={24}>
+            <BottomSheetFooter {...footerProps} style={styles.footer}>
                 <ChargingButton {...btnProps} />
             </BottomSheetFooter>
         )
@@ -109,9 +113,7 @@ export const ChargingStationInfoSheet = ({
         >
             <BottomSheetView>
                 {isInitialLoading ? (
-                    <View style={{ justifyContent: 'center', alignItems: 'center', height: '60%' }}>
-                        <ActivityIndicator />
-                    </View>
+                    <ActivityIndicator />
                 ) : (
                     <>
                         <View style={styles.titleContainer}>
@@ -153,5 +155,10 @@ const styles = StyleSheet.create({
     address: {
         fontFamily: font.regular,
         fontSize: typography.body2,
+    },
+    footer: {
+        backgroundColor: colors.background,
+        paddingTop: 10,
+        paddingBottom: 25,
     },
 })
