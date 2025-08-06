@@ -12,8 +12,10 @@ import { useChargingSession } from '@hooks/useChargingSession'
 
 export const ChargingStationsScreen = () => {
     const [selectedId, setSelectedId] = useState<number | undefined>()
-    const { stations } = useChargingStations()
-    const chargingSession = useChargingSession()
+    const { stations, updateStationList } = useChargingStations()
+    const chargingSession = useChargingSession({
+        updateStationsList: updateStationList,
+    })
     const [selectedConnector, setSelectedConnector] = useState<Connector>()
 
     const sheetRef = useRef<BottomSheetModal>(null)

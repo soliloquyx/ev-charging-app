@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useSQLiteContext } from 'expo-sqlite'
 
 import { ChargingStation } from '../types'
@@ -8,13 +8,16 @@ export const useChargingStations = () => {
     const db = useSQLiteContext()
     const [stations, setStations] = useState<ChargingStation[]>([])
 
-    useEffect(() => {
-        if (!db) return
-        ;(async () => {
-            const list = await getStationList(db)
-            setStations(list)
-        })()
+    const updateStationList = useCallback(async () => {
+        const list = await getStationList(db)
+        setStations(list)
     }, [db])
 
-    return { stations }
+    useEffect(() => {
+        if (!db) return
+
+        updateStationList()
+    }, [db, updateStationList])
+
+    return { stations, updateStationList }
 }

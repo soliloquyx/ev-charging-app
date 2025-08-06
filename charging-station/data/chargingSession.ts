@@ -21,6 +21,25 @@ export const fetchChargingSession = async (db: SQLite.SQLiteDatabase, id: number
     return session ? toChargingSession(session) : null
 }
 
+export const updateConnectorAvailability = async (
+    db: SQLite.SQLiteDatabase,
+    id: number,
+    isAvailable: boolean
+) => {
+    const result = await db.runAsync(
+        `
+        UPDATE connectors
+        SET available = ?
+        WHERE id = ?
+    `,
+        [isAvailable ? 1 : 0, id]
+    )
+
+    if (result.changes === 0) {
+        throw new Error(`No connector found with id ${id}`)
+    }
+}
+
 export const fetchLatestChargingSession = async (db: SQLite.SQLiteDatabase) => {
     const session = await db.getFirstAsync<ChargingSessionRow>(
         `
