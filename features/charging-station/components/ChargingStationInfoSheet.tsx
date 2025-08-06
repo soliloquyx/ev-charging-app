@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
 import { BottomSheetFooter, BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet'
 
@@ -15,10 +14,16 @@ import { font, typography } from '../../../theme/typography'
 type Props = {
     ref: React.RefObject<BottomSheetModal | null>
     selectedStationId?: number
+    setSelectConnector: React.Dispatch<React.SetStateAction<Connector | undefined>>
+    selectedConnector?: Connector
 }
 
-export const ChargingStationInfoSheet = ({ ref, selectedStationId }: Props) => {
-    const [selectedConnector, setSelectedConnector] = useState<Connector>()
+export const ChargingStationInfoSheet = ({
+    ref,
+    selectedStationId,
+    setSelectConnector,
+    selectedConnector,
+}: Props) => {
     const {
         session,
         startCharging,
@@ -32,16 +37,8 @@ export const ChargingStationInfoSheet = ({ ref, selectedStationId }: Props) => {
 
     const isInitialLoading = !session && !stationInfo && (sessionLoading || infoLoading)
 
-    const selectConnector = (item: Connector) => {
-        setSelectedConnector(item)
-    }
-
     const onDismissSheet = () => {
-        setSelectedConnector(undefined)
-    }
-
-    const onChange = () => {
-        getChargingSession()
+        setSelectConnector(undefined)
     }
 
     const renderSheetContent = (session: ChargingSession | null) => {
@@ -56,7 +53,7 @@ export const ChargingStationInfoSheet = ({ ref, selectedStationId }: Props) => {
             return (
                 <ChargingStationInfoView
                     station={stationInfo}
-                    selectConnector={selectConnector}
+                    selectConnector={setSelectConnector}
                     selectedConnector={selectedConnector}
                 />
             )
@@ -105,7 +102,7 @@ export const ChargingStationInfoSheet = ({ ref, selectedStationId }: Props) => {
             style={styles.container}
             onDismiss={onDismissSheet}
             footerComponent={renderFooter}
-            onChange={onChange}
+            onChange={getChargingSession}
         >
             <BottomSheetView>
                 {isInitialLoading ? (

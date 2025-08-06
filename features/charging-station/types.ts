@@ -55,6 +55,7 @@ export type Charger = {
 export type Connector = {
     id: number
     chargerId: number
+    stationId: number
     type: ConnectorType
     identifier?: string
     power: Power
