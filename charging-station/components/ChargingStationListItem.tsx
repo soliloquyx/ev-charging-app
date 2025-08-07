@@ -15,6 +15,7 @@ export const ChargingStationListItem = ({ item, selected, onPress }: Props) => {
         <Pressable
             style={[styles.container, selected && styles.selected]}
             onPress={() => onPress(item.id)}
+            accessibilityRole="button"
         >
             <Text style={styles.title}>{item.name}</Text>
             <Text style={styles.address}>
