@@ -48,12 +48,14 @@ Tests are not comprehensive due to time running out, but I covered:
 
 3. In production, errors should be logged centrally (Crashlytics, Sentry etc).
 
-4. I hardcoded text values to components in english. In a production app, texts would be separated into language files and a library like i18n would be used.
+4. Didn't test with different screen sizes and platforms. Relied on my iPhone 14 Pro and 15 Pro simulator.
 
-5. Dataset in my app is quite small, so not much thought was put into optimizing list component performance. This would be done as needed, when issues surface.
+5. I hardcoded text values to components in english. In a production app, texts would be separated into language files and a library like i18n would be used.
 
-6. Production app would benefit from a search/filtering component.
+6. Dataset in my app is quite small, so not much thought was put into optimizing list component performance. This would be done as needed, when issues surface.
 
-7. In production, stations would have GPS coordinates, shown on a map and distance from user could be calculated if allowed.
+7. Production app would benefit from a search/filtering component.
 
-8. Live activity widget could be added to show progress even when the app is on the background.
+8. In production, stations would have GPS coordinates, shown on a map and distance from user could be calculated if allowed.
+
+9. Live activity widget could be added to show progress even when the app is on the background.
