@@ -7,10 +7,9 @@ import { colors, typography, font } from 'theme'
 
 type Props = {
     session: ChargingSession
-    onPress: () => Promise<void>
 }
 
-export const ChargingSessionView = ({ session, onPress }: Props) => {
+export const ChargingSessionView = ({ session }: Props) => {
     return (
         <View>
             <ChargerHeader name={session.chargerName} connectorType={session.connectorType} />

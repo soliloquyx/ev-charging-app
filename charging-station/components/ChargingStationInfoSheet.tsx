@@ -36,12 +36,7 @@ export const ChargingStationInfoSheet = ({
 
     const renderSheetContent = (session: ChargingSession | null) => {
         if (session?.isActive) {
-            return (
-                <ChargingSessionView
-                    session={session}
-                    onPress={() => chargingSession.finishCharging(session.id!, session.connectorId)}
-                />
-            )
+            return <ChargingSessionView session={session} />
         } else if (stationInfo) {
             const sections = stationInfo
                 ? stationInfo.chargers.map((charger) => ({
