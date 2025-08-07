@@ -14,7 +14,7 @@ export const ChargingSessionView = ({ session, onPress }: Props) => {
     return (
         <View>
             <ChargerHeader name={session.chargerName} connectorType={session.connectorType} />
-            <Text style={styles.charging}>Battery charging</Text>
+            <Text style={styles.charging}>Battery charging: {session.batterySoc}%</Text>
             <View style={styles.batteryIcon}>
                 <MaterialCommunityIcons
                     name="battery-charging-50"

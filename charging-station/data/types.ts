@@ -37,6 +37,7 @@ export type ChargingSessionRow = {
     is_active: number
     connector_type: ConnectorType
     charger_name: string
+    battery_soc: number
 }
 
 export type ConnectorRowWithChargerName = ConnectorRow & { charger_name: string }

@@ -3,6 +3,8 @@ import * as SQLite from 'expo-sqlite'
 import { ChargingSessionRow } from './types'
 import { toChargingSession } from './transform'
 
+const HARD_CODED_BATTERY_SOC = 50
+
 export const fetchChargingSession = async (db: SQLite.SQLiteDatabase, id: number) => {
     const session = await db.getFirstAsync<ChargingSessionRow>(
         `
@@ -66,12 +68,13 @@ export const saveNewChargingSession = async (
 ) => {
     const result = await db.runAsync(
         `
-        INSERT INTO charging_sessions (station_id, charger_id, connector_id, is_active)
-        VALUES (?, ?, ?, 1);
+        INSERT INTO charging_sessions (station_id, charger_id, connector_id, is_active, battery_soc)
+        VALUES (?, ?, ?, 1, ?);
         `,
         stationId,
         chargerId,
-        connectorId
+        connectorId,
+        HARD_CODED_BATTERY_SOC
     )
 
     const session = await fetchChargingSession(db, result.lastInsertRowId)

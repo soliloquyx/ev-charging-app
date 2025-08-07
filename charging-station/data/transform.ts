@@ -72,6 +72,7 @@ export const toChargingSession = (raw: ChargingSessionRow): ChargingSession => (
     isActive: raw.is_active === 1,
     connectorType: raw.connector_type,
     chargerName: raw.charger_name,
+    batterySoc: raw.battery_soc,
 })
 
 const getHelperMaps = (rawData: ConnectorRowWithChargerName[]) => {

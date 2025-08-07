@@ -71,6 +71,7 @@ export type ChargingSession = {
     isActive: boolean
     connectorType: ConnectorType
     chargerName: string
+    batterySoc: number
 }
 
 export type ChargerSection = {

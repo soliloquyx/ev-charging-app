@@ -20,7 +20,6 @@ export const colors = {
     status: {
         available: brand,
         unavailable: '#9E9E9E',
-        notOperational: '#A45755',
     },
     button: {
         primary: brand,
