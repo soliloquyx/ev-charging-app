@@ -26,11 +26,23 @@ Other notable dependencies:
 
 `eslint-config-expo` - ESLint support.
 
+`jest/jest-expo/react-test-renderer` - for testing.
+
+## Testing
+
+`npm run tests` - runs all tests
+
+Tests are not comprehensive due to time running out, but I covered:
+
+1. Data transformations from raw db data to UI shape.
+
+2. Few smaller stateful components
+
 ## Room for improvements
 
 1. Due to the simplicity of the app (1 screen), routing was not needed. It would be added as complexity grows.
 
-2. Same with global state management.
+2. Same with global state management. At the end, prop drilling was becoming a bit annoying, but not enough to rework.
 
 3. In production, errors should be logged centrally (Crashlytics, Sentry etc).
 

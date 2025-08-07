@@ -18,7 +18,7 @@ type Props = {
     onDismiss: () => void
 }
 
-export const ChargingStationInfoSheet = ({
+export const ChargingStationSheet = ({
     ref,
     selectedStationId,
     setSelectedConnector,
@@ -34,7 +34,7 @@ export const ChargingStationInfoSheet = ({
         !chargingSession.session && !stationInfo && (chargingSession.loading || infoLoading)
 
     const renderFooter = (footerProps: BottomSheetDefaultFooterProps) => (
-        <BottomSheetFooter {...footerProps}>
+        <BottomSheetFooter {...footerProps} style={styles.footer}>
             <ChargingStationFooter
                 cs={chargingSession}
                 station={stationInfo}

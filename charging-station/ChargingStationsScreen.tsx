@@ -5,7 +5,7 @@ import type { BottomSheetModal } from '@gorhom/bottom-sheet'
 
 import { ChargingStationList } from './components/ChargingStationList'
 import { useChargingStations } from './hooks/useChargingStations'
-import { ChargingStationInfoSheet } from './components/ChargingStationInfoSheet'
+import { ChargingStationSheet } from './components/ChargingStationSheet'
 import { Connector } from './types'
 import { colors } from 'theme'
 import { useChargingSession } from '@hooks/useChargingSession'
@@ -49,7 +49,7 @@ export const ChargingStationsScreen = () => {
                 onPress={onPressListItem}
                 selectedId={selectedStationId}
             />
-            <ChargingStationInfoSheet
+            <ChargingStationSheet
                 ref={sheetRef}
                 selectedStationId={selectedStationId}
                 setSelectedConnector={setSelectedConnector}
