@@ -1,41 +1,38 @@
 {
-  "name": "ev-charging-app",
-  "version": "1.0.0",
-  "main": "index.ts",
-  "scripts": {
-    "start": "concurrently 'npm run start:app' 'npm run start:server'",
-    "start:app": "expo start",
-    "start:server": "npx json-server --watch db.json --port 3000",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
-    "lint": "expo lint"
-  },
-  "dependencies": {
-    "@expo-google-fonts/inter": "^0.4.1",
-    "@gorhom/bottom-sheet": "^5.1.8",
-    "expo": "~53.0.20",
-    "expo-font": "~13.3.2",
-    "expo-status-bar": "~2.2.3",
-    "react": "19.0.0",
-    "react-native": "0.79.5",
-    "react-native-gesture-handler": "~2.24.0",
-    "react-native-reanimated": "~3.17.4",
-    "react-native-safe-area-context": "5.4.0",
-    "expo-sqlite": "~15.2.14"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.25.2",
-    "@types/react": "~19.0.10",
-    "concurrently": "^9.2.0",
-    "eslint-config-expo": "^9.2.0",
-    "json-server": "0.17.0",
-    "prettier": "3.6.2",
-    "typescript": "~5.8.3"
-  },
-  "private": true,
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+    "name": "ev-charging-app",
+    "version": "1.0.0",
+    "main": "index.ts",
+    "scripts": {
+        "start": "expo start",
+        "android": "expo start --android",
+        "ios": "expo start --ios",
+        "web": "expo start --web",
+        "lint": "expo lint"
+    },
+    "dependencies": {
+        "@expo-google-fonts/inter": "^0.4.1",
+        "@gorhom/bottom-sheet": "^5.1.8",
+        "expo": "~53.0.20",
+        "expo-font": "~13.3.2",
+        "expo-status-bar": "~2.2.3",
+        "react": "19.0.0",
+        "react-native": "0.79.5",
+        "react-native-gesture-handler": "~2.24.0",
+        "react-native-reanimated": "~3.17.4",
+        "react-native-safe-area-context": "5.4.0",
+        "expo-sqlite": "~15.2.14"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.25.2",
+        "@types/react": "~19.0.10",
+        "eslint-config-expo": "^9.2.0",
+        "json-server": "0.17.0",
+        "prettier": "3.6.2",
+        "typescript": "~5.8.3"
+    },
+    "private": true,
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": ""
 }
