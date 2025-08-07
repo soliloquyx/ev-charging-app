@@ -28,6 +28,7 @@ export const ChargingButton = ({
                 opacityStyle(pressed),
             ]}
             disabled={disabled}
+            testID="charging-button"
             onPress={onPress}
         >
             <Text style={styles.primaryLabel}>{primaryLabel}</Text>

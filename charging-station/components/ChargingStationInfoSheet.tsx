@@ -1,11 +1,11 @@
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
-import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet'
+import { BottomSheetFooter, BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet'
 import { BottomSheetDefaultFooterProps } from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheetFooter/types'
 
 import { useChargingSession } from 'charging-station/hooks/useChargingSession'
 import { Connector } from 'charging-station/types'
 import { useChargingStationInfo } from 'charging-station/hooks/useChargingStationInfo'
-import { font, typography } from 'theme'
+import { colors, font, typography } from 'theme'
 import { ChargingStationFooter } from './ChargingStationFooter'
 import { ChargingStationContent } from './ChargingStationContent'
 
@@ -34,12 +34,13 @@ export const ChargingStationInfoSheet = ({
         !chargingSession.session && !stationInfo && (chargingSession.loading || infoLoading)
 
     const renderFooter = (footerProps: BottomSheetDefaultFooterProps) => (
-        <ChargingStationFooter
-            cs={chargingSession}
-            station={stationInfo}
-            selectedConnector={selectedConnector}
-            footerProps={footerProps}
-        />
+        <BottomSheetFooter {...footerProps}>
+            <ChargingStationFooter
+                cs={chargingSession}
+                station={stationInfo}
+                selectedConnector={selectedConnector}
+            />
+        </BottomSheetFooter>
     )
 
     return (
@@ -104,5 +105,10 @@ const styles = StyleSheet.create({
     address: {
         fontFamily: font.regular,
         fontSize: typography.body2,
+    },
+    footer: {
+        backgroundColor: colors.background,
+        paddingTop: 10,
+        paddingBottom: 25,
     },
 })

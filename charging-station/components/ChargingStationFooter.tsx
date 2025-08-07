@@ -1,20 +1,15 @@
-import { BottomSheetFooter } from '@gorhom/bottom-sheet'
-import { BottomSheetDefaultFooterProps } from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheetFooter/types'
-
 import { ChargingButton, Props as ChargingButtonProps } from './ChargingButton'
 import { colors } from 'theme'
 import { ChargingStationInfo, Connector } from 'charging-station/types'
 import { useChargingSession } from '@hooks/useChargingSession'
-import { StyleSheet } from 'react-native'
 
 type Props = {
     cs: ReturnType<typeof useChargingSession>
     station?: ChargingStationInfo
     selectedConnector?: Connector
-    footerProps: BottomSheetDefaultFooterProps
 }
 
-export const ChargingStationFooter = ({ cs, station, selectedConnector, footerProps }: Props) => {
+export const ChargingStationFooter = ({ cs, station, selectedConnector }: Props) => {
     const btnProps: ChargingButtonProps = {
         primaryLabel: 'Select connector',
         color: colors.button.disabled,
@@ -38,17 +33,5 @@ export const ChargingStationFooter = ({ cs, station, selectedConnector, footerPr
         }
     }
 
-    return (
-        <BottomSheetFooter {...footerProps} style={styles.footer}>
-            <ChargingButton {...btnProps} />
-        </BottomSheetFooter>
-    )
+    return <ChargingButton {...btnProps} />
 }
-
-const styles = StyleSheet.create({
-    footer: {
-        backgroundColor: colors.background,
-        paddingTop: 10,
-        paddingBottom: 25,
-    },
-})
