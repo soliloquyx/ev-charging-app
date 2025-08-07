@@ -18,6 +18,8 @@ I tried to keep it as simple as possible, using Expo to ease the development pro
 
 Other notable dependencies:
 
+`expo-sqlite` - for data handling.
+
 `@gorhom/bottom-sheet` - used to display charging station info and charging session, if active.
 
 `@expo-google-fonts/inter` - font detailed in the CVI.
