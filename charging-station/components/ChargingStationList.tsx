@@ -9,7 +9,7 @@ type Props = {
     selectedId?: number
 }
 
-export const ChargingStationsList = ({ data, onPress, selectedId }: Props) => {
+export const ChargingStationList = ({ data, onPress, selectedId }: Props) => {
     const renderItem: ListRenderItem<ChargingStation> = ({ item }) => (
         <ChargingStationListItem item={item} onPress={onPress} selected={selectedId === item.id} />
     )

@@ -10,10 +10,10 @@ import {
 } from '@data/chargingSession'
 
 type UseChargingSessionOptions = {
-    updateStationsList: () => Promise<void>
+    updateStationList: () => Promise<void>
 }
 
-export const useChargingSession = ({ updateStationsList }: UseChargingSessionOptions) => {
+export const useChargingSession = ({ updateStationList }: UseChargingSessionOptions) => {
     const db = useSQLiteContext()
 
     const [session, setSession] = useState<ChargingSession | null>(null)
@@ -23,7 +23,7 @@ export const useChargingSession = ({ updateStationsList }: UseChargingSessionOpt
         const s = await saveNewChargingSession(db, stationId, chargerId, connectorId)
         await updateConnectorAvailability(db, connectorId, false)
         setSession(s)
-        await updateStationsList()
+        await updateStationList()
     }
 
     const getChargingSession = useCallback(async () => {
@@ -38,9 +38,9 @@ export const useChargingSession = ({ updateStationsList }: UseChargingSessionOpt
             const s = await finishChargingSession(db, sessionId)
             await updateConnectorAvailability(db, connectorId, true)
             setSession(s)
-            await updateStationsList()
+            await updateStationList()
         },
-        [db, updateStationsList]
+        [db, updateStationList]
     )
 
     return { session, startCharging, getChargingSession, finishCharging, loading }

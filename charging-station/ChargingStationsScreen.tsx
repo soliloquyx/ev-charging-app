@@ -3,7 +3,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { useRef, useState } from 'react'
 import type { BottomSheetModal } from '@gorhom/bottom-sheet'
 
-import { ChargingStationsList } from './components/ChargingStationsList'
+import { ChargingStationList } from './components/ChargingStationList'
 import { useChargingStations } from './hooks/useChargingStations'
 import { ChargingStationInfoSheet } from './components/ChargingStationInfoSheet'
 import { Connector } from './types'
@@ -14,7 +14,7 @@ export const ChargingStationsScreen = () => {
     const [selectedId, setSelectedId] = useState<number | undefined>()
     const { stations, updateStationList } = useChargingStations()
     const chargingSession = useChargingSession({
-        updateStationsList: updateStationList,
+        updateStationList,
     })
     const [selectedConnector, setSelectedConnector] = useState<Connector>()
 
@@ -39,7 +39,7 @@ export const ChargingStationsScreen = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <ChargingStationsList
+            <ChargingStationList
                 data={stations}
                 onPress={onPressListItem}
                 selectedId={selectedId}
