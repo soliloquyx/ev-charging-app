@@ -11,7 +11,7 @@ import { colors } from 'theme'
 import { useChargingSession } from '@hooks/useChargingSession'
 
 export const ChargingStationsScreen = () => {
-    const [selectedId, setSelectedId] = useState<number | undefined>()
+    const [selectedStationId, setSelectedStationId] = useState<number | undefined>()
     const { stations, updateStationList } = useChargingStations()
     const chargingSession = useChargingSession({
         updateStationList,
@@ -25,7 +25,7 @@ export const ChargingStationsScreen = () => {
             return
         }
 
-        setSelectedId((currentId) => {
+        setSelectedStationId((currentId) => {
             if (currentId === newId) {
                 sheetRef.current?.close()
                 return undefined
@@ -37,19 +37,25 @@ export const ChargingStationsScreen = () => {
         })
     }
 
+    const onDismissSheet = () => {
+        setSelectedConnector(undefined)
+        setSelectedStationId(undefined)
+    }
+
     return (
         <SafeAreaView style={styles.container}>
             <ChargingStationList
                 data={stations}
                 onPress={onPressListItem}
-                selectedId={selectedId}
+                selectedId={selectedStationId}
             />
             <ChargingStationInfoSheet
                 ref={sheetRef}
-                selectedStationId={selectedId}
-                setSelectConnector={setSelectedConnector}
+                selectedStationId={selectedStationId}
+                setSelectedConnector={setSelectedConnector}
                 selectedConnector={selectedConnector}
                 chargingSession={chargingSession}
+                onDismiss={onDismissSheet}
             />
         </SafeAreaView>
     )

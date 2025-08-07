@@ -13,17 +13,19 @@ import { colors, font, typography } from 'theme'
 type Props = {
     ref: React.RefObject<BottomSheetModal | null>
     selectedStationId?: number
-    setSelectConnector: React.Dispatch<React.SetStateAction<Connector | undefined>>
+    setSelectedConnector: React.Dispatch<React.SetStateAction<Connector | undefined>>
     selectedConnector?: Connector
     chargingSession: ReturnType<typeof useChargingSession>
+    onDismiss: () => void
 }
 
 export const ChargingStationInfoSheet = ({
     ref,
     selectedStationId,
-    setSelectConnector,
+    setSelectedConnector,
     selectedConnector,
     chargingSession,
+    onDismiss,
 }: Props) => {
     const { stationInfo, loading: infoLoading } = useChargingStationInfo(
         chargingSession.session?.isActive ? chargingSession.session?.stationId : selectedStationId
@@ -31,10 +33,6 @@ export const ChargingStationInfoSheet = ({
 
     const isInitialLoading =
         !chargingSession.session && !stationInfo && (chargingSession.loading || infoLoading)
-
-    const onDismissSheet = () => {
-        setSelectConnector(undefined)
-    }
 
     const renderSheetContent = (session: ChargingSession | null) => {
         if (session?.isActive) {
@@ -55,7 +53,7 @@ export const ChargingStationInfoSheet = ({
             return (
                 <ChargerList
                     sections={sections}
-                    onPress={setSelectConnector}
+                    onPress={setSelectedConnector}
                     selectedId={selectedConnector?.id}
                 />
             )
@@ -107,7 +105,7 @@ export const ChargingStationInfoSheet = ({
             enableDismissOnClose={!chargingSession.session?.isActive}
             index={1}
             style={styles.container}
-            onDismiss={onDismissSheet}
+            onDismiss={onDismiss}
             footerComponent={renderFooter}
             onChange={chargingSession.getChargingSession}
         >
