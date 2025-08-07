@@ -1,27 +1,7 @@
 import * as SQLite from 'expo-sqlite'
 
 import { ConnectorSummaryRow, StationRow } from './types'
-import { toStationsList } from './transform'
-import { ConnectorSummary } from 'charging-station/types'
-
-const getConnectorSummaryMap = (rawData: ConnectorSummaryRow[]) => {
-    const connectorMap = new Map<number, ConnectorSummary[]>()
-
-    for (const row of rawData) {
-        const sum: ConnectorSummary = {
-            type: row.type,
-            available: row.available,
-        }
-
-        if (connectorMap.has(row.station_id)) {
-            connectorMap.get(row.station_id)?.push(sum)
-        } else {
-            connectorMap.set(row.station_id, [sum])
-        }
-    }
-
-    return connectorMap
-}
+import { getConnectorSummaryMap, toStationList } from './transform'
 
 export const getStationList = async (db: SQLite.SQLiteDatabase) => {
     const stationRows = await db.getAllAsync<StationRow>('SELECT * FROM stations')
@@ -35,6 +15,6 @@ export const getStationList = async (db: SQLite.SQLiteDatabase) => {
 
     const connectorMap = getConnectorSummaryMap(connectorSummaryRows)
 
-    const list = toStationsList(stationRows, connectorMap)
+    const list = toStationList(stationRows, connectorMap)
     return list
 }

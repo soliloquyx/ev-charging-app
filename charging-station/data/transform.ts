@@ -6,9 +6,33 @@ import {
     Connector,
     ConnectorSummary,
 } from 'charging-station/types'
-import { ChargingSessionRow, ConnectorRowWithChargerName, StationRow } from './types'
+import {
+    ChargingSessionRow,
+    ConnectorRowWithChargerName,
+    ConnectorSummaryRow,
+    StationRow,
+} from './types'
 
-export const toStationsList = (
+export const getConnectorSummaryMap = (rawData: ConnectorSummaryRow[]) => {
+    const connectorMap = new Map<number, ConnectorSummary[]>()
+
+    for (const row of rawData) {
+        const sum: ConnectorSummary = {
+            type: row.type,
+            available: row.available,
+        }
+
+        if (connectorMap.has(row.station_id)) {
+            connectorMap.get(row.station_id)?.push(sum)
+        } else {
+            connectorMap.set(row.station_id, [sum])
+        }
+    }
+
+    return connectorMap
+}
+
+export const toStationList = (
     rawData: StationRow[],
     connectorMap: Map<number, ConnectorSummary[]>
 ) => {
