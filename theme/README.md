@@ -12,6 +12,20 @@
 
     `npm run android` - starts the development server and opens the app on an Android emulator (Android Studio must be installed).
 
+## Technologies used
+
+I tried to keep it as simple as possible, using Expo to ease the development process.
+
+Other notable dependencies:
+
+`@gorhom/bottom-sheet` - used to display charging station info and charging session, if active.
+
+`@expo-google-fonts/inter` - font detailed in the CVI.
+
+`prettier`- for unified code formatting in the project.
+
+`eslint-config-expo` - ESLint support.
+
 ## Room for improvements
 
 1. Due to the simplicity of the app (1 screen), routing was not needed. It would be added as complexity grows.
