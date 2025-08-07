@@ -1,18 +1,30 @@
 import { StyleSheet, Text, View } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
-import { ConnectorSummary } from 'charging-station/types'
-import { connectionIcon } from 'charging-station/utils/icon'
+import { ConnectorSummary, ConnectorType } from 'charging-station/types'
 import { colors, font, typography } from 'theme'
 
 type Props = {
     item: ConnectorSummary
 }
 
-const statusColor = (available: number): { color: string } =>
-    available ? { color: colors.status.available } : { color: colors.status.unavailable }
-
 export const ConnectorSummaryItem = ({ item }: Props) => {
+    const statusColor = (available: number): { color: string } =>
+        available ? { color: colors.status.available } : { color: colors.status.unavailable }
+
+    const connectionIcon = (c: ConnectorType) => {
+        switch (c) {
+            case ConnectorType.CHADEMO:
+                return 'ev-plug-chademo'
+            case ConnectorType.COMBO_CCS:
+                return 'ev-plug-ccs2'
+            case ConnectorType.TYPE2:
+                return 'ev-plug-type2'
+            default:
+                return 'power-plug-outline'
+        }
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.rowContainer} key={item.type}>
@@ -26,7 +38,10 @@ export const ConnectorSummaryItem = ({ item }: Props) => {
                     </View>
                     <Text style={styles.type}>{item.type}</Text>
                 </View>
-                <Text style={[styles.status, statusColor(item.available)]}>
+                <Text
+                    testID={`status-text-${item.type}`}
+                    style={[styles.status, statusColor(item.available)]}
+                >
                     {`Available (${item.available})`}
                 </Text>
             </View>
